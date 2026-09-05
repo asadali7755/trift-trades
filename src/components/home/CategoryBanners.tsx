@@ -26,7 +26,7 @@ export function CategoryBanners() {
           <Link
             key={banner.href}
             href={banner.href}
-            className="group relative flex h-64 items-end overflow-hidden rounded-3xl bg-surface"
+            className="group relative flex aspect-[3/4] items-end overflow-hidden rounded-3xl bg-surface"
           >
             <Image
               src={banner.image}
