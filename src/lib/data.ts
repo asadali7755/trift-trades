@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import type { Category, Product } from "@/lib/types";
 
 const PAGE_SIZE = 24;
@@ -13,9 +13,15 @@ function isSupabaseConfigured() {
   );
 }
 
+// Every read here is a public, RLS-open SELECT (see "Public read" policies in
+// supabase/migrations/0001_init.sql) — none of it needs a signed-in session,
+// so it goes through the cookie-free client. That also keeps these functions
+// safe to call from build-time contexts like generateStaticParams and
+// sitemap.ts, where request-bound cookies aren't available.
+
 export async function getCategories(): Promise<Category[]> {
   if (!isSupabaseConfigured()) return [];
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("categories")
     .select("*")
@@ -27,7 +33,7 @@ export async function getCategories(): Promise<Category[]> {
 
 export async function getCategoryBySlug(slug: string): Promise<Category | null> {
   if (!isSupabaseConfigured()) return null;
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("categories")
     .select("*")
@@ -51,7 +57,7 @@ export async function getProducts(filters: ProductFilters = {}) {
   if (!isSupabaseConfigured()) {
     return { products: [] as Product[], total: 0, page, pageSize: PAGE_SIZE, totalPages: 1 };
   }
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const from = (page - 1) * PAGE_SIZE;
   const to = from + PAGE_SIZE - 1;
 
@@ -90,7 +96,7 @@ export async function getProducts(filters: ProductFilters = {}) {
 
 export async function getFeaturedProducts(limit = 4): Promise<Product[]> {
   if (!isSupabaseConfigured()) return [];
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("products")
     .select("*, category:categories(*)")
@@ -105,7 +111,7 @@ export async function getFeaturedProducts(limit = 4): Promise<Product[]> {
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
   if (!isSupabaseConfigured()) return null;
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("products")
     .select("*, category:categories(*)")
@@ -122,7 +128,7 @@ export async function getRelatedProducts(
   limit = 4
 ): Promise<Product[]> {
   if (!categoryId || !isSupabaseConfigured()) return [];
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("products")
     .select("*, category:categories(*)")
@@ -137,7 +143,7 @@ export async function getRelatedProducts(
 
 export async function getAllProductsForAdmin(): Promise<Product[]> {
   if (!isSupabaseConfigured()) return [];
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("products")
     .select("*, category:categories(*)")
@@ -149,7 +155,7 @@ export async function getAllProductsForAdmin(): Promise<Product[]> {
 
 export async function getProductById(id: string): Promise<Product | null> {
   if (!isSupabaseConfigured()) return null;
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("products")
     .select("*, category:categories(*)")
@@ -162,7 +168,7 @@ export async function getProductById(id: string): Promise<Product | null> {
 
 export async function getAllProductSlugs(): Promise<{ slug: string }[]> {
   if (!isSupabaseConfigured()) return [];
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase.from("products").select("slug").eq("is_in_stock", true);
   if (error) throw error;
   return data ?? [];
