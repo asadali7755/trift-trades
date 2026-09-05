@@ -1,20 +1,17 @@
 import Link from "next/link";
-import Image from "next/image";
 
 const BANNERS = [
   {
     href: "/football-boots",
     title: "Football Boots",
     subtitle: "Firm ground, turf & indoor",
-    image: "/images/imported-football-boots-display-thrift-trades.webp",
-    alt: "Wall display of imported football boots and cleats at Thrift Trades",
+    video: "/videos/imported-football-boots-collection-thrift-trades.mp4",
   },
   {
     href: "/running-shoes",
     title: "Running Shoes",
     subtitle: "Everyday training miles",
-    image: "/images/imported-running-shoes-collection-thrift-trades.webp",
-    alt: "Collection of imported running shoes in assorted colors at Thrift Trades",
+    video: "/videos/imported-running-shoes-collection-thrift-trades.mp4",
   },
 ];
 
@@ -26,14 +23,15 @@ export function CategoryBanners() {
           <Link
             key={banner.href}
             href={banner.href}
-            className="group relative flex aspect-[3/4] items-end overflow-hidden rounded-3xl bg-surface"
+            className="group relative flex aspect-video max-h-[340px] items-end overflow-hidden rounded-3xl bg-surface"
           >
-            <Image
-              src={banner.image}
-              alt={banner.alt}
-              fill
-              sizes="(max-width: 640px) 100vw, 50vw"
-              className="object-cover opacity-70 transition duration-500 group-hover:scale-105 group-hover:opacity-90"
+            <video
+              className="absolute inset-0 h-full w-full object-cover opacity-70 transition duration-500 group-hover:scale-105 group-hover:opacity-90"
+              src={banner.video}
+              autoPlay
+              muted
+              loop
+              playsInline
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
             <div className="relative p-6">

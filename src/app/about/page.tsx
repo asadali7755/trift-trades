@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
       <h1 className="font-display text-5xl text-paper">OUR STORY</h1>
-      <div className="mt-8 aspect-[9/16] w-full max-w-md mx-auto overflow-hidden rounded-2xl bg-surface">
+      <div className="mt-8 aspect-[9/16] max-h-[600px] w-full max-w-xs mx-auto overflow-hidden rounded-2xl bg-surface">
         <video
           className="h-full w-full object-cover"
           src="/videos/thrift-trades-shop-story-intro.mp4"

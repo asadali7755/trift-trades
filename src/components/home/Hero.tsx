@@ -49,7 +49,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-3xl bg-surface lg:max-w-none"
+          className="relative aspect-[4/5] max-h-[520px] w-full overflow-hidden rounded-3xl bg-surface"
         >
           <Image
             src="/images/imported-nike-sneaker-thrift-trades.webp"

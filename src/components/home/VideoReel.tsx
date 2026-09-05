@@ -18,7 +18,7 @@ export function VideoReel() {
             Browse The Collection
           </Link>
         </div>
-        <div className="order-1 mx-auto aspect-[9/16] w-full max-w-sm overflow-hidden rounded-3xl bg-ink lg:order-2">
+        <div className="order-1 mx-auto aspect-[9/16] max-h-[480px] w-full max-w-xs overflow-hidden rounded-3xl bg-ink lg:order-2">
           <video
             className="h-full w-full object-cover"
             src="/videos/thrift-trades-shop-floor-reel.mp4"
