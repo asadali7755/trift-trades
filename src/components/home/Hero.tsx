@@ -52,8 +52,8 @@ export function Hero() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/hero-placeholder.jpg"
-            alt="Imported football boots at Thrift Trades"
+            src="/images/hero-shoe.jpg"
+            alt="Imported sneaker from the Thrift Trades collection"
             className="h-full w-full object-cover"
           />
         </motion.div>

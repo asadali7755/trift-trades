@@ -10,8 +10,8 @@ export function BrandStory() {
       <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-surface">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/hero-placeholder.jpg"
-          alt="Thrift Trades shop"
+          src="/images/shop-shelf.jpg"
+          alt="Shelves of inspected imported shoes at Thrift Trades"
           className="h-full w-full object-cover"
         />
       </div>

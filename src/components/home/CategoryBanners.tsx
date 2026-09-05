@@ -5,13 +5,13 @@ const BANNERS = [
     href: "/football-boots",
     title: "Football Boots",
     subtitle: "Firm ground, turf & indoor",
-    image: "/hero-placeholder.jpg",
+    image: "/images/football-boots-wall.jpg",
   },
   {
     href: "/running-shoes",
     title: "Running Shoes",
     subtitle: "Everyday training miles",
-    image: "/hero-placeholder.jpg",
+    image: "/images/running-shoes-colorful.jpg",
   },
 ];
 

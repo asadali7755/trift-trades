@@ -5,7 +5,7 @@ import { saveProduct } from "@/app/admin/actions";
 import { MediaUploader } from "@/components/admin/MediaUploader";
 import type { Category, Product } from "@/lib/types";
 
-const SIZE_OPTIONS = ["38", "39", "40", "41", "42", "43", "44", "45", "46"];
+const SIZE_OPTIONS = ["4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11"];
 
 export function ProductForm({
   categories,
@@ -147,7 +147,7 @@ export function ProductForm({
 
       <div>
         <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
-          Available Sizes (EU)
+          Available Sizes (UK)
         </label>
         <div className="mt-2 flex flex-wrap gap-2">
           {SIZE_OPTIONS.map((size) => (

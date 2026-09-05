@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import type { Category } from "@/lib/types";
 
-const SIZES = ["38", "39", "40", "41", "42", "43", "44", "45"];
+const SIZES = ["4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10"];
 
 export function ProductFilters({ categories }: { categories: Category[] }) {
   const router = useRouter();
@@ -53,7 +53,7 @@ export function ProductFilters({ categories }: { categories: Category[] }) {
       )}
 
       <div>
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">Size (EU)</h3>
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">Size (UK)</h3>
         <div className="mt-3 flex flex-wrap gap-2">
           <button
             onClick={() => updateParam("size", null)}

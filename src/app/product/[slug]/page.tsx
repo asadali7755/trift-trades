@@ -88,7 +88,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           {product.sizes.length > 0 && (
             <div className="mt-6">
               <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">
-                Available Sizes (EU)
+                Available Sizes (UK)
               </h3>
               <div className="mt-2 flex flex-wrap gap-2">
                 {product.sizes.map((size) => (
