@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { href: "/football-boots", label: "Football Boots" },
   { href: "/running-shoes", label: "Running" },
   { href: "/casual-sneakers", label: "Casual" },
+  { href: "/slippers", label: "Slippers" },
   { href: "/about", label: "Our Story" },
   { href: "/contact", label: "Location" },
 ];

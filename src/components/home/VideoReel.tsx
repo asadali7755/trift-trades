@@ -5,7 +5,7 @@ export function VideoReel() {
     <section className="relative h-[70vh] min-h-[420px] w-full overflow-hidden">
       <video
         className="absolute inset-0 h-full w-full object-cover"
-        src="/videos/shop-tour.mp4"
+        src="/videos/thrift-trades-shop-floor-reel.mp4"
         autoPlay
         muted
         loop

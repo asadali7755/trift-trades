@@ -74,5 +74,6 @@ insert into categories (name, slug, sort_order) values
   ('Football Boots', 'football-boots', 1),
   ('Running Shoes', 'running-shoes', 2),
   ('Casual Sneakers', 'casual-sneakers', 3),
-  ('Kids Shoes', 'kids-shoes', 4)
+  ('Kids Shoes', 'kids-shoes', 4),
+  ('Slippers', 'slippers', 5)
 on conflict (slug) do nothing;

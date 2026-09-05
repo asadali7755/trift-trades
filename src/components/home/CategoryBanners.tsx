@@ -1,17 +1,20 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const BANNERS = [
   {
     href: "/football-boots",
     title: "Football Boots",
     subtitle: "Firm ground, turf & indoor",
-    image: "/images/football-boots-wall.jpg",
+    image: "/images/imported-football-boots-display-thrift-trades.webp",
+    alt: "Wall display of imported football boots and cleats at Thrift Trades",
   },
   {
     href: "/running-shoes",
     title: "Running Shoes",
     subtitle: "Everyday training miles",
-    image: "/images/running-shoes-colorful.jpg",
+    image: "/images/imported-running-shoes-collection-thrift-trades.webp",
+    alt: "Collection of imported running shoes in assorted colors at Thrift Trades",
   },
 ];
 
@@ -25,11 +28,12 @@ export function CategoryBanners() {
             href={banner.href}
             className="group relative flex h-64 items-end overflow-hidden rounded-3xl bg-surface"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={banner.image}
-              alt={banner.title}
-              className="absolute inset-0 h-full w-full object-cover opacity-70 transition duration-500 group-hover:scale-105 group-hover:opacity-90"
+              alt={banner.alt}
+              fill
+              sizes="(max-width: 640px) 100vw, 50vw"
+              className="object-cover opacity-70 transition duration-500 group-hover:scale-105 group-hover:opacity-90"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
             <div className="relative p-6">

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { optimizedCloudinaryUrl } from "@/lib/cloudinary";
 import type { Product } from "@/lib/types";
 
 export function ProductCard({ product }: { product: Product }) {
@@ -13,7 +14,7 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="relative aspect-square overflow-hidden bg-surface-light">
         {image ? (
           <Image
-            src={image.url}
+            src={optimizedCloudinaryUrl(image.url)}
             alt={image.alt || product.name}
             fill
             sizes="(max-width: 768px) 50vw, 25vw"

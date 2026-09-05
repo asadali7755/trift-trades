@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/constants";
 import { getAllProductSlugs } from "@/lib/data";
 
-const CATEGORY_SLUGS = ["football-boots", "running-shoes", "casual-sneakers", "kids-shoes"];
+const CATEGORY_SLUGS = ["football-boots", "running-shoes", "casual-sneakers", "kids-shoes", "slippers"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await getAllProductSlugs();

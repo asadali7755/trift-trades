@@ -14,7 +14,7 @@ export default function AboutPage() {
       <div className="mt-8 aspect-video overflow-hidden rounded-2xl bg-surface">
         <video
           className="h-full w-full object-cover"
-          src="/videos/about-video.mp4"
+          src="/videos/thrift-trades-shop-story-intro.mp4"
           controls
           playsInline
         />

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { generalInquiryLink } from "@/lib/whatsapp";
 
@@ -50,11 +51,13 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.15 }}
           className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl bg-surface"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/hero-shoe.jpg"
-            alt="Imported sneaker from the Thrift Trades collection"
-            className="h-full w-full object-cover"
+          <Image
+            src="/images/imported-nike-sneaker-thrift-trades.webp"
+            alt="Imported Nike sneaker on artificial turf at Thrift Trades in Taxila"
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover"
+            priority
           />
         </motion.div>
       </div>

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const STATS = [
   { label: "Shoes In Stock", value: "50+" },
   { label: "Cities Delivered To", value: "12+" },
@@ -8,11 +10,12 @@ export function BrandStory() {
   return (
     <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
       <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-surface">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/shop-shelf.jpg"
-          alt="Shelves of inspected imported shoes at Thrift Trades"
-          className="h-full w-full object-cover"
+        <Image
+          src="/images/thrift-trades-shop-shelf-inspected-shoes.webp"
+          alt="Shelves of hand-inspected imported shoes stacked at the Thrift Trades shop"
+          fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="object-cover"
         />
       </div>
       <div className="flex flex-col justify-center">

@@ -23,7 +23,7 @@ export function ProductFilters({ categories }: { categories: Category[] }) {
 
   return (
     <div className="flex flex-col gap-6">
-      {!pathname?.match(/^\/(football-boots|running-shoes|casual-sneakers|kids-shoes)/) && (
+      {!pathname?.match(/^\/(football-boots|running-shoes|casual-sneakers|kids-shoes|slippers)/) && (
         <div>
           <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">
             Category

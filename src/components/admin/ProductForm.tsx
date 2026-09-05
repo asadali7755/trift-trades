@@ -58,7 +58,10 @@ export function ProductForm({
           sizes,
           condition,
           description,
-          images: images.map((img) => ({ url: img.url, alt: name })),
+          images: images.map((img) => ({
+            url: img.url,
+            alt: `${name} - imported shoe available at Thrift Trades`,
+          })),
           videoUrl: video[0]?.url ?? null,
           isFeatured,
           isInStock,

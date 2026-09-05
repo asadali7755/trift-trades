@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { optimizedCloudinaryUrl } from "@/lib/cloudinary";
 import type { ProductImage } from "@/lib/types";
 
 export function Gallery({ images, videoUrl }: { images: ProductImage[]; videoUrl?: string | null }) {
@@ -13,7 +14,7 @@ export function Gallery({ images, videoUrl }: { images: ProductImage[]; videoUrl
       <div className="relative aspect-square overflow-hidden rounded-2xl bg-surface">
         {hasImages ? (
           <Image
-            src={images[active].url}
+            src={optimizedCloudinaryUrl(images[active].url)}
             alt={images[active].alt}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -35,7 +36,13 @@ export function Gallery({ images, videoUrl }: { images: ProductImage[]; videoUrl
                 i === active ? "border-accent" : "border-transparent"
               }`}
             >
-              <Image src={img.url} alt={img.alt} fill sizes="20vw" className="object-cover" />
+              <Image
+                src={optimizedCloudinaryUrl(img.url)}
+                alt={img.alt}
+                fill
+                sizes="20vw"
+                className="object-cover"
+              />
             </button>
           ))}
         </div>
@@ -45,7 +52,7 @@ export function Gallery({ images, videoUrl }: { images: ProductImage[]; videoUrl
         <video
           controls
           className="mt-2 aspect-video w-full rounded-2xl bg-black"
-          src={videoUrl}
+          src={optimizedCloudinaryUrl(videoUrl)}
         />
       )}
     </div>

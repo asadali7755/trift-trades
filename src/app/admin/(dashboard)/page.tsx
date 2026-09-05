@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getAllProductsForAdmin } from "@/lib/data";
+import { optimizedCloudinaryUrl } from "@/lib/cloudinary";
 import { DeleteProductButton } from "@/components/admin/DeleteProductButton";
 
 export default async function AdminDashboardPage() {
@@ -41,7 +42,7 @@ export default async function AdminDashboardPage() {
                     <div className="relative h-12 w-12 overflow-hidden rounded-lg bg-surface-light">
                       {product.images[0] && (
                         <Image
-                          src={product.images[0].url}
+                          src={optimizedCloudinaryUrl(product.images[0].url)}
                           alt={product.images[0].alt || product.name}
                           fill
                           sizes="48px"

@@ -15,6 +15,8 @@ const CATEGORY_COPY: Record<string, string> = {
     "Everyday imported sneakers for on and off the pitch. Comfortable, genuine, and affordable.",
   "kids-shoes":
     "Imported sports shoes sized for kids — same quality checks, kid-friendly prices.",
+  slippers:
+    "Imported slippers and sandals for everyday comfort — genuine brands, lightly used, checked before sale.",
 };
 
 type Params = { category: string };

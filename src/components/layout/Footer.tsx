@@ -21,6 +21,7 @@ export function Footer() {
               <li><Link href="/football-boots" className="hover:text-accent">Football Boots</Link></li>
               <li><Link href="/running-shoes" className="hover:text-accent">Running Shoes</Link></li>
               <li><Link href="/casual-sneakers" className="hover:text-accent">Casual Sneakers</Link></li>
+              <li><Link href="/slippers" className="hover:text-accent">Slippers</Link></li>
               <li><Link href="/shop" className="hover:text-accent">All Shoes</Link></li>
             </ul>
           </div>
