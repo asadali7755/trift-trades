@@ -8,7 +8,17 @@ import { generalInquiryLink } from "@/lib/whatsapp";
 export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-white/10 bg-ink">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24 lg:px-8">
+      <Image
+        src="/images/thrift-trades-shop-wall-shoe-display-collection.webp"
+        alt="Wall-to-wall display of imported football boots and sneakers at the Thrift Trades shop"
+        fill
+        sizes="100vw"
+        className="object-cover opacity-25"
+        priority
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/85 to-ink" />
+
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -49,11 +59,11 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="relative aspect-[4/5] max-h-[520px] w-full overflow-hidden rounded-3xl bg-surface"
+          className="relative aspect-[4/5] max-h-[520px] w-full overflow-hidden rounded-3xl bg-surface shadow-2xl shadow-black/50"
         >
           <Image
-            src="/images/imported-nike-sneaker-thrift-trades.webp"
-            alt="Imported Nike sneaker on artificial turf at Thrift Trades in Taxila"
+            src="/images/imported-nike-football-boots-on-turf-thrift-trades.webp"
+            alt="Imported Nike football boots on artificial turf at Thrift Trades"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"
