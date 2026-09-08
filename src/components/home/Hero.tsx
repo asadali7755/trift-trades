@@ -13,10 +13,11 @@ export function Hero() {
         alt="Wall-to-wall display of imported football boots and sneakers at the Thrift Trades shop"
         fill
         sizes="100vw"
-        className="object-cover opacity-25"
+        className="object-cover opacity-60"
         priority
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/85 to-ink" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/60 to-ink/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/40" />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24 lg:px-8">
         <motion.div
