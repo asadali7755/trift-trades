@@ -34,10 +34,13 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isAdminRoute = request.nextUrl.pathname.startsWith("/admin");
-  const isLoginRoute = request.nextUrl.pathname === "/admin/login";
+  const pathname = request.nextUrl.pathname;
+  const isAdminRoute = pathname.startsWith("/admin");
+  const isLoginRoute = pathname === "/admin/login";
+  const isPublicAdminRoute =
+    isLoginRoute || pathname === "/admin/forgot-password" || pathname === "/admin/reset-password";
 
-  if (isAdminRoute && !isLoginRoute && !user) {
+  if (isAdminRoute && !isPublicAdminRoute && !user) {
     const url = request.nextUrl.clone();
     url.pathname = "/admin/login";
     return NextResponse.redirect(url);

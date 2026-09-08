@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { SITE } from "@/lib/constants";
 import type { ProductImage } from "@/lib/types";
 
 function slugify(text: string) {
@@ -25,6 +26,21 @@ export async function login(formData: FormData) {
   }
 
   redirect("/admin");
+}
+
+export async function requestPasswordReset(formData: FormData) {
+  const email = String(formData.get("email"));
+
+  const supabase = await createClient();
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${SITE.url}/admin/reset-password`,
+  });
+
+  if (error) {
+    redirect(`/admin/forgot-password?error=${encodeURIComponent(error.message)}`);
+  }
+
+  redirect("/admin/forgot-password?sent=1");
 }
 
 export async function logout() {
