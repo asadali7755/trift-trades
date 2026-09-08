@@ -40,16 +40,26 @@ export async function middleware(request: NextRequest) {
   const isPublicAdminRoute =
     isLoginRoute || pathname === "/admin/forgot-password" || pathname === "/admin/reset-password";
 
-  if (isAdminRoute && !isPublicAdminRoute && !user) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/admin/login";
-    return NextResponse.redirect(url);
-  }
+  // Only gate GET page navigations here. Server Action calls (saveProduct,
+  // deleteProduct, etc.) are POSTs to these same /admin/* paths — redirecting
+  // those to /admin/login turns a valid, authenticated mutation into a
+  // silent no-op (the browser follows the redirect, the action never runs,
+  // and the user is bounced to the login page for no visible reason). Those
+  // actions build their own Supabase client from the same request cookies
+  // and are already covered by the products/categories RLS policies, so
+  // they don't need this extra gate.
+  if (request.method === "GET") {
+    if (isAdminRoute && !isPublicAdminRoute && !user) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/admin/login";
+      return NextResponse.redirect(url);
+    }
 
-  if (isLoginRoute && user) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/admin";
-    return NextResponse.redirect(url);
+    if (isLoginRoute && user) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/admin";
+      return NextResponse.redirect(url);
+    }
   }
 
   return response;
