@@ -2,9 +2,20 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
-import { SITE } from "@/lib/constants";
 import type { ProductImage } from "@/lib/types";
+
+// Reads the domain from the actual incoming request instead of the
+// NEXT_PUBLIC_SITE_URL env var, so password-reset links always point at
+// whatever host is really serving the app — immune to that env var being
+// stale, unset, or pointed at localhost on a given deployment.
+async function getSiteOrigin() {
+  const headersList = await headers();
+  const host = headersList.get("host");
+  const protocol = host?.startsWith("localhost") ? "http" : "https";
+  return `${protocol}://${host}`;
+}
 
 function slugify(text: string) {
   return text
@@ -31,9 +42,10 @@ export async function login(formData: FormData) {
 export async function requestPasswordReset(formData: FormData) {
   const email = String(formData.get("email"));
 
+  const origin = await getSiteOrigin();
   const supabase = await createClient();
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${SITE.url}/admin/reset-password`,
+    redirectTo: `${origin}/admin/reset-password`,
   });
 
   if (error) {
