@@ -106,7 +106,6 @@ export async function saveProduct(input: ProductFormInput) {
   revalidatePath("/admin");
   revalidatePath("/shop");
   revalidatePath("/");
-  redirect("/admin");
 }
 
 export async function deleteProduct(id: string) {

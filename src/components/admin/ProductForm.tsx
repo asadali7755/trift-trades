@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { saveProduct } from "@/app/admin/actions";
 import { MediaUploader } from "@/components/admin/MediaUploader";
 import type { Category, Product } from "@/lib/types";
@@ -14,6 +15,7 @@ export function ProductForm({
   categories: Category[];
   product?: Product;
 }) {
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [name, setName] = useState(product?.name ?? "");
   const [categoryId, setCategoryId] = useState(product?.category_id ?? categories[0]?.id ?? "");
@@ -66,6 +68,7 @@ export function ProductForm({
           isFeatured,
           isInStock,
         });
+        router.push("/admin");
       } catch (err) {
         setError(err instanceof Error ? err.message : "Something went wrong. Try again.");
       }
