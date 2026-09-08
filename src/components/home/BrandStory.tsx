@@ -9,10 +9,10 @@ const STATS = [
 export function BrandStory() {
   return (
     <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
-      <div className="relative aspect-[4/5] max-h-[460px] w-full overflow-hidden rounded-3xl bg-surface">
+      <div className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-3xl bg-surface lg:mx-0">
         <Image
-          src="/images/thrift-trades-shop-shelf-inspected-shoes.webp"
-          alt="Shelves of hand-inspected imported shoes stacked at the Thrift Trades shop"
+          src="/images/imported-puma-sneaker-on-turf-thrift-trades.webp"
+          alt="Imported Puma sneaker on artificial turf at Thrift Trades"
           fill
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover"
