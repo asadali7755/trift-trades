@@ -1,5 +1,6 @@
 "use client";
 
+import type { Dispatch, SetStateAction } from "react";
 import { CldUploadWidget, type CloudinaryUploadWidgetResults } from "next-cloudinary";
 import { UploadCloud, X } from "lucide-react";
 
@@ -13,7 +14,7 @@ export function MediaUploader({
 }: {
   resourceType: "image" | "video";
   items: UploadedItem[];
-  onChange: (items: UploadedItem[]) => void;
+  onChange: Dispatch<SetStateAction<UploadedItem[]>>;
   multiple?: boolean;
 }) {
   const preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
@@ -22,11 +23,15 @@ export function MediaUploader({
     const info = result.info;
     if (!info || typeof info === "string") return;
     const item: UploadedItem = { url: info.secure_url, publicId: info.public_id };
-    onChange(multiple ? [...items, item] : [item]);
+    // Functional update so this always applies on top of the latest state,
+    // regardless of whether the Cloudinary widget's onSuccess closure is
+    // stale from when it was first opened (it stays open across repeated
+    // uploads, so `items` captured at render time can't be trusted here).
+    onChange((prev) => (multiple ? [...prev, item] : [item]));
   }
 
   function removeItem(publicId: string) {
-    onChange(items.filter((i) => i.publicId !== publicId));
+    onChange((prev) => prev.filter((i) => i.publicId !== publicId));
   }
 
   if (!preset) {
@@ -41,8 +46,11 @@ export function MediaUploader({
   return (
     <div className="flex flex-col gap-3">
       <div className={`grid gap-3 ${resourceType === "image" ? "grid-cols-4" : "grid-cols-1"}`}>
-        {items.map((item) => (
-          <div key={item.publicId} className="relative aspect-square overflow-hidden rounded-lg bg-surface-light">
+        {items.map((item, index) => (
+          <div
+            key={`${item.publicId}-${index}`}
+            className="relative aspect-square overflow-hidden rounded-lg bg-surface-light"
+          >
             {resourceType === "image" ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={item.url} alt="" className="h-full w-full object-cover" />
