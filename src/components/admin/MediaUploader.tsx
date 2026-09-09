@@ -19,6 +19,15 @@ export function MediaUploader({
 }) {
   const preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
 
+  // The Cloudinary widget locks background scroll (sets overflow:hidden on
+  // <html>/<body>) while open and is supposed to undo that when it closes.
+  // On some mobile browsers that unlock doesn't fire reliably, leaving the
+  // whole page stuck unscrollable after uploading — force it back regardless.
+  function unlockPageScroll() {
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  }
+
   function handleSuccess(result: CloudinaryUploadWidgetResults) {
     const info = result.info;
     if (!info || typeof info === "string") return;
@@ -28,6 +37,11 @@ export function MediaUploader({
     // stale from when it was first opened (it stays open across repeated
     // uploads, so `items` captured at render time can't be trusted here).
     onChange((prev) => (multiple ? [...prev, item] : [item]));
+    // The widget's own onClose doesn't always fire right after a successful
+    // upload (it may stay open for another upload), so unlock defensively
+    // here too, slightly delayed so it doesn't fight the widget's own
+    // close animation if it is in fact closing.
+    setTimeout(unlockPageScroll, 300);
   }
 
   function removeItem(publicId: string) {
@@ -73,6 +87,7 @@ export function MediaUploader({
           uploadPreset={preset}
           options={{ resourceType, sources: ["local", "camera"], multiple: false }}
           onSuccess={handleSuccess}
+          onClose={unlockPageScroll}
         >
           {({ open }) => (
             <button
