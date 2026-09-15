@@ -38,14 +38,26 @@ export async function generateMetadata({
   };
 }
 
-export default async function CategoryPage({ params }: { params: Promise<Params> }) {
+export default async function CategoryPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<Params>;
+  searchParams: Promise<Record<string, string | undefined>>;
+}) {
   const { category: slug } = await params;
   const category = await getCategoryBySlug(slug);
   if (!category) notFound();
 
+  const query = await searchParams;
   const [categories, { products, page, totalPages }] = await Promise.all([
     getCategories(),
-    getProducts({ categorySlug: slug }),
+    getProducts({
+      categorySlug: slug,
+      gender: query.gender,
+      size: query.size,
+      page: query.page ? Number(query.page) : 1,
+    }),
   ]);
 
   return (
@@ -79,7 +91,12 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
               ))}
             </div>
           )}
-          <Pagination page={page} totalPages={totalPages} basePath={`/${slug}`} />
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            basePath={`/${slug}`}
+            extraParams={{ gender: query.gender, size: query.size }}
+          />
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { SITE } from "@/lib/constants";
 import { getAllProductSlugs } from "@/lib/data";
 
 const CATEGORY_SLUGS = ["football-boots", "running-shoes", "casual-sneakers", "kids-shoes", "slippers"];
+const GENDER_SLUGS = ["men", "women", "kids"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await getAllProductSlugs();
@@ -13,6 +14,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE.url}/about`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${SITE.url}/contact`, changeFrequency: "monthly", priority: 0.5 },
     ...CATEGORY_SLUGS.map((slug) => ({
+      url: `${SITE.url}/${slug}`,
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+    })),
+    ...GENDER_SLUGS.map((slug) => ({
       url: `${SITE.url}/${slug}`,
       changeFrequency: "daily" as const,
       priority: 0.8,

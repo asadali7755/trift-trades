@@ -7,6 +7,9 @@ import { generalInquiryLink } from "@/lib/whatsapp";
 
 const NAV_LINKS = [
   { href: "/shop", label: "All Shoes" },
+  { href: "/men", label: "Men" },
+  { href: "/women", label: "Women" },
+  { href: "/kids", label: "Kids" },
   { href: "/football-boots", label: "Football Boots" },
   { href: "/running-shoes", label: "Running" },
   { href: "/casual-sneakers", label: "Casual" },
