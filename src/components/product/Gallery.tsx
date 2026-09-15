@@ -11,14 +11,14 @@ export function Gallery({ images, videoUrl }: { images: ProductImage[]; videoUrl
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="relative aspect-square overflow-hidden rounded-2xl bg-surface">
+      <div className="relative aspect-square overflow-hidden rounded-2xl bg-black">
         {hasImages ? (
           <Image
             src={optimizedCloudinaryUrl(images[active].url)}
             alt={images[active].alt}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover"
+            className="object-contain"
             priority
           />
         ) : (
@@ -32,7 +32,7 @@ export function Gallery({ images, videoUrl }: { images: ProductImage[]; videoUrl
             <button
               key={img.url + i}
               onClick={() => setActive(i)}
-              className={`relative aspect-square overflow-hidden rounded-lg border-2 ${
+              className={`relative aspect-square overflow-hidden rounded-lg border-2 bg-black ${
                 i === active ? "border-accent" : "border-transparent"
               }`}
             >
@@ -41,7 +41,7 @@ export function Gallery({ images, videoUrl }: { images: ProductImage[]; videoUrl
                 alt={img.alt}
                 fill
                 sizes="20vw"
-                className="object-cover"
+                className="object-contain"
               />
             </button>
           ))}

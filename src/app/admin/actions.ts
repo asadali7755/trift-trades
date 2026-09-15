@@ -65,6 +65,7 @@ export type ProductFormInput = {
   id?: string;
   name: string;
   categoryId: string | null;
+  gender: string;
   price: number;
   compareAtPrice: number | null;
   sizes: string[];
@@ -84,6 +85,7 @@ export async function saveProduct(input: ProductFormInput) {
     name: input.name,
     slug,
     category_id: input.categoryId,
+    gender: input.gender,
     price: input.price,
     compare_at_price: input.compareAtPrice,
     sizes: input.sizes,
@@ -143,4 +145,23 @@ export async function deleteCategory(id: string) {
   const { error } = await supabase.from("categories").delete().eq("id", id);
   if (error) throw error;
   revalidatePath("/admin/categories");
+}
+
+export async function saveGenderBanner(input: {
+  gender: "men" | "women" | "kids";
+  imageUrl: string;
+  imageAlt: string;
+}) {
+  const supabase = await createClient();
+  const { error } = await supabase.from("gender_banners").upsert({
+    gender: input.gender,
+    label: input.gender.charAt(0).toUpperCase() + input.gender.slice(1),
+    image_url: input.imageUrl,
+    image_alt: input.imageAlt,
+    updated_at: new Date().toISOString(),
+  });
+  if (error) throw error;
+
+  revalidatePath("/admin/banners");
+  revalidatePath("/");
 }

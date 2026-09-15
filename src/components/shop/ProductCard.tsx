@@ -11,14 +11,14 @@ export function ProductCard({ product }: { product: Product }) {
       href={`/product/${product.slug}`}
       className="group flex flex-col overflow-hidden rounded-2xl bg-surface transition hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30"
     >
-      <div className="relative aspect-square overflow-hidden bg-surface-light">
+      <div className="relative aspect-square overflow-hidden bg-black">
         {image ? (
           <Image
             src={optimizedCloudinaryUrl(image.url)}
             alt={image.alt || product.name}
             fill
             sizes="(max-width: 768px) 50vw, 25vw"
-            className="object-cover transition duration-500 group-hover:scale-105"
+            className="object-contain transition duration-500 group-hover:scale-105"
           />
         ) : (
           <div className="flex h-full items-center justify-center text-paper/30">No image</div>

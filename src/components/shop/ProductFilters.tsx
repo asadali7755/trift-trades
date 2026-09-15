@@ -4,6 +4,11 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import type { Category } from "@/lib/types";
 
 const SIZES = ["4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10"];
+const GENDERS = [
+  { value: "men", label: "Men" },
+  { value: "women", label: "Women" },
+  { value: "kids", label: "Kids" },
+];
 
 export function ProductFilters({ categories }: { categories: Category[] }) {
   const router = useRouter();
@@ -20,9 +25,35 @@ export function ProductFilters({ categories }: { categories: Category[] }) {
 
   const activeSize = searchParams.get("size");
   const activeCategory = searchParams.get("category");
+  const activeGender = searchParams.get("gender");
 
   return (
     <div className="flex flex-col gap-6">
+      <div>
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">Shop by</h3>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <button
+            onClick={() => updateParam("gender", null)}
+            className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+              !activeGender ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
+            }`}
+          >
+            All
+          </button>
+          {GENDERS.map((g) => (
+            <button
+              key={g.value}
+              onClick={() => updateParam("gender", g.value)}
+              className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+                activeGender === g.value ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
+              }`}
+            >
+              {g.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {!pathname?.match(/^\/(football-boots|running-shoes|casual-sneakers|kids-shoes|slippers)/) && (
         <div>
           <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">

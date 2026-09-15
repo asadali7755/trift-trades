@@ -1,5 +1,5 @@
 import { createPublicClient } from "@/lib/supabase/public";
-import type { Category, Product } from "@/lib/types";
+import type { Category, GenderBanner, Product } from "@/lib/types";
 
 const PAGE_SIZE = 24;
 
@@ -46,6 +46,7 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null> 
 
 export type ProductFilters = {
   categorySlug?: string;
+  gender?: string;
   size?: string;
   minPrice?: number;
   maxPrice?: number;
@@ -71,6 +72,9 @@ export async function getProducts(filters: ProductFilters = {}) {
   if (filters.categorySlug) {
     const category = await getCategoryBySlug(filters.categorySlug);
     if (category) query = query.eq("category_id", category.id);
+  }
+  if (filters.gender) {
+    query = query.eq("gender", filters.gender);
   }
   if (filters.size) {
     query = query.contains("sizes", [filters.size]);
@@ -172,4 +176,20 @@ export async function getAllProductSlugs(): Promise<{ slug: string }[]> {
   const { data, error } = await supabase.from("products").select("slug").eq("is_in_stock", true);
   if (error) throw error;
   return data ?? [];
+}
+
+// Ordered men/women/kids so the homepage "Shop by" section and the admin
+// banner manager always render in the same sequence, regardless of row
+// insertion order in the database.
+const GENDER_ORDER = ["men", "women", "kids"] as const;
+
+export async function getGenderBanners(): Promise<GenderBanner[]> {
+  if (!isSupabaseConfigured()) return [];
+  const supabase = createPublicClient();
+  const { data, error } = await supabase.from("gender_banners").select("*");
+  if (error) throw error;
+  const rows = (data ?? []) as GenderBanner[];
+  return GENDER_ORDER.map(
+    (gender) => rows.find((r) => r.gender === gender) ?? { gender, label: gender, image_url: null, image_alt: null }
+  );
 }

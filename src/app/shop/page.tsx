@@ -20,6 +20,7 @@ export default async function ShopPage({
     getCategories(),
     getProducts({
       categorySlug: params.category,
+      gender: params.gender,
       size: params.size,
       page: params.page ? Number(params.page) : 1,
     }),

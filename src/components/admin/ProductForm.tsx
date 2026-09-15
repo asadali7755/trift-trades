@@ -7,6 +7,12 @@ import { MediaUploader } from "@/components/admin/MediaUploader";
 import type { Category, Product } from "@/lib/types";
 
 const SIZE_OPTIONS = ["4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11"];
+const GENDER_OPTIONS: { value: Product["gender"]; label: string }[] = [
+  { value: "men", label: "Men" },
+  { value: "women", label: "Women" },
+  { value: "kids", label: "Kids" },
+  { value: "unisex", label: "Unisex" },
+];
 
 export function ProductForm({
   categories,
@@ -19,6 +25,7 @@ export function ProductForm({
   const [isPending, startTransition] = useTransition();
   const [name, setName] = useState(product?.name ?? "");
   const [categoryId, setCategoryId] = useState(product?.category_id ?? categories[0]?.id ?? "");
+  const [gender, setGender] = useState<Product["gender"]>(product?.gender ?? "unisex");
   const [price, setPrice] = useState(product?.price?.toString() ?? "");
   const [compareAtPrice, setCompareAtPrice] = useState(
     product?.compare_at_price?.toString() ?? ""
@@ -55,6 +62,7 @@ export function ProductForm({
           id: product?.id,
           name,
           categoryId: categoryId || null,
+          gender,
           price: Number(price),
           compareAtPrice: compareAtPrice ? Number(compareAtPrice) : null,
           sizes,
@@ -94,7 +102,7 @@ export function ProductForm({
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
         <div>
           <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
             Category
@@ -107,6 +115,22 @@ export function ProductForm({
             {categories.map((c) => (
               <option key={c.id} value={c.id}>
                 {c.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+            Men / Women / Kids
+          </label>
+          <select
+            value={gender}
+            onChange={(e) => setGender(e.target.value as Product["gender"])}
+            className="mt-1 w-full rounded-lg border border-white/15 bg-surface px-4 py-3 text-paper outline-none focus:border-accent"
+          >
+            {GENDER_OPTIONS.map((g) => (
+              <option key={g.value} value={g.value}>
+                {g.label}
               </option>
             ))}
           </select>

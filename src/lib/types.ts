@@ -11,12 +11,15 @@ export type ProductImage = {
   alt: string;
 };
 
+export type Gender = "men" | "women" | "kids" | "unisex";
+
 export type Product = {
   id: string;
   name: string;
   slug: string;
   category_id: string | null;
   category?: Category | null;
+  gender: Gender;
   price: number;
   compare_at_price: number | null;
   sizes: string[];
@@ -29,4 +32,11 @@ export type Product = {
   is_in_stock: boolean;
   created_at: string;
   updated_at: string;
+};
+
+export type GenderBanner = {
+  gender: "men" | "women" | "kids";
+  label: string;
+  image_url: string | null;
+  image_alt: string | null;
 };
