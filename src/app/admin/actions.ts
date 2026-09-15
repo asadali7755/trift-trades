@@ -25,6 +25,31 @@ function slugify(text: string) {
     .replace(/(^-|-$)/g, "");
 }
 
+// Two shoes (or categories) with the same/similarly-worded name would
+// otherwise both slugify to the same value and collide on the table's
+// unique slug constraint — e.g. two "Nike" listings both landing on
+// "nike". Appends -2, -3, ... until it finds a slug that's free
+// (excluding the row being updated, so re-saving something without
+// changing its name doesn't collide with itself).
+async function uniqueSlug(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  table: "products" | "categories",
+  baseSlug: string,
+  excludeId?: string
+) {
+  let slug = baseSlug;
+  let attempt = 1;
+  while (true) {
+    let query = supabase.from(table).select("id").eq("slug", slug).limit(1);
+    if (excludeId) query = query.neq("id", excludeId);
+    const { data, error } = await query.maybeSingle();
+    if (error) throw error;
+    if (!data) return slug;
+    attempt += 1;
+    slug = `${baseSlug}-${attempt}`;
+  }
+}
+
 export async function login(formData: FormData) {
   const email = String(formData.get("email"));
   const password = String(formData.get("password"));
@@ -79,7 +104,7 @@ export type ProductFormInput = {
 
 export async function saveProduct(input: ProductFormInput) {
   const supabase = await createClient();
-  const slug = slugify(input.name);
+  const slug = await uniqueSlug(supabase, "products", slugify(input.name), input.id);
 
   const payload = {
     name: input.name,
@@ -122,7 +147,7 @@ export async function deleteProduct(id: string) {
 
 export async function saveCategory(input: { id?: string; name: string; description: string }) {
   const supabase = await createClient();
-  const slug = slugify(input.name);
+  const slug = await uniqueSlug(supabase, "categories", slugify(input.name), input.id);
 
   if (input.id) {
     const { error } = await supabase
