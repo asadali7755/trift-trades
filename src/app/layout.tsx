@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Serif, Manrope } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { CinematicFooter } from "@/components/layout/CinematicFooter";
 import { WhatsAppFloatingButton } from "@/components/layout/WhatsAppFloatingButton";
 import { LocalBusinessSchema } from "@/components/schema/LocalBusinessSchema";
 import { SITE } from "@/lib/constants";
@@ -56,7 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col bg-ink text-paper">
         <Header />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <CinematicFooter />
         <WhatsAppFloatingButton />
       </body>
     </html>
