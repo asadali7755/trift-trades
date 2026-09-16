@@ -6,14 +6,10 @@ import { Menu, X, MessageCircle } from "lucide-react";
 import { generalInquiryLink } from "@/lib/whatsapp";
 
 const NAV_LINKS = [
-  { href: "/shop", label: "All Shoes" },
   { href: "/men", label: "Men" },
   { href: "/women", label: "Women" },
   { href: "/kids", label: "Kids" },
-  { href: "/football-boots", label: "Football Boots" },
-  { href: "/running-shoes", label: "Running" },
-  { href: "/casual-sneakers", label: "Casual" },
-  { href: "/slippers", label: "Slippers" },
+  { href: "/shop", label: "All Shoes" },
   { href: "/about", label: "Our Story" },
   { href: "/contact", label: "Location" },
 ];
@@ -23,17 +19,17 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-ink/95 backdrop-blur border-b border-white/10">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="font-display text-3xl tracking-wide text-paper">
-          THRIFT <span className="text-accent">TRADES</span>
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
+        <Link href="/" className="font-display font-display-italic text-2xl text-paper">
+          Thrift Trades
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-8 lg:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-paper/80 transition hover:text-accent"
+              className="text-xs font-medium uppercase tracking-[0.12em] text-paper/70 transition hover:text-accent"
             >
               {link.label}
             </Link>
@@ -45,7 +41,7 @@ export function Header() {
             href={generalInquiryLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-ink transition hover:bg-accent-dark sm:inline-flex"
+            className="hidden items-center gap-2 rounded-full border border-accent/50 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-accent transition hover:bg-accent hover:text-ink sm:inline-flex"
           >
             <MessageCircle size={16} />
             Order on WhatsApp

@@ -23,7 +23,7 @@ export function CategoryBanners() {
           <Link
             key={banner.href}
             href={banner.href}
-            className="group relative flex aspect-video max-h-[340px] items-end overflow-hidden rounded-3xl bg-surface"
+            className="group relative flex aspect-video max-h-[340px] items-end overflow-hidden rounded-sm bg-surface"
           >
             <video
               className="absolute inset-0 h-full w-full object-cover opacity-70 transition duration-500 group-hover:scale-105 group-hover:opacity-90"
@@ -35,8 +35,12 @@ export function CategoryBanners() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
             <div className="relative p-6">
-              <h3 className="font-display text-3xl text-paper">{banner.title}</h3>
-              <p className="mt-1 text-sm text-paper/70">{banner.subtitle}</p>
+              <h3 className="font-display font-display-italic text-3xl text-paper">
+                {banner.title}
+              </h3>
+              <p className="mt-1 text-xs uppercase tracking-widest text-paper/50">
+                {banner.subtitle}
+              </p>
             </div>
           </Link>
         ))}

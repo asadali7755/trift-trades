@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, DM_Sans } from "next/font/google";
+import { Instrument_Serif, Manrope } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -7,14 +7,15 @@ import { WhatsAppFloatingButton } from "@/components/layout/WhatsAppFloatingButt
 import { LocalBusinessSchema } from "@/components/schema/LocalBusinessSchema";
 import { SITE } from "@/lib/constants";
 
-const bebasNeue = Bebas_Neue({
-  variable: "--font-bebas",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-serif",
   weight: "400",
+  style: ["normal", "italic"],
   subsets: ["latin"],
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
@@ -47,7 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${bebasNeue.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${instrumentSerif.variable} ${manrope.variable} h-full antialiased`}
     >
       <head>
         <LocalBusinessSchema />

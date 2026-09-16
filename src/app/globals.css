@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --color-ink: #0b0c0e;
-  --color-surface: #16181c;
-  --color-surface-light: #1f2227;
-  --color-paper: #f5f4f0;
-  --color-muted: #9a9da3;
-  --color-accent: #c8ff3d;
-  --color-accent-dark: #9fd400;
-  --font-display: var(--font-bebas);
-  --font-body: var(--font-dm-sans);
+  --color-ink: #0c0c0b;
+  --color-surface: #141310;
+  --color-surface-light: #1c1a16;
+  --color-paper: #f3f1ea;
+  --color-muted: #a8a59c;
+  --color-accent: #cbd18f;
+  --color-accent-dark: #a9af6c;
+  --font-display: var(--font-serif);
+  --font-body: var(--font-manrope);
 }
 
 @theme inline {
@@ -31,12 +31,17 @@ body {
 }
 
 h1, h2, h3, .font-display {
-  font-family: var(--font-display), sans-serif;
-  letter-spacing: 0.02em;
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.font-display-italic {
+  font-style: italic;
 }
 
 .ticker-track {
-  animation: ticker 22s linear infinite;
+  animation: ticker 26s linear infinite;
 }
 
 @keyframes ticker {

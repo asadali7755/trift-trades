@@ -6,15 +6,15 @@ import type { Gender } from "@/lib/types";
 
 const COPY: Record<Exclude<Gender, "unisex">, { title: string; blurb: string }> = {
   men: {
-    title: "MEN'S SHOES",
+    title: "Men's Shoes",
     blurb: "Imported football boots, running shoes, and sneakers sized for men — across Pakistan.",
   },
   women: {
-    title: "WOMEN'S SHOES",
+    title: "Women's Shoes",
     blurb: "Imported sports shoes and sneakers sized for women — genuine quality, honest prices.",
   },
   kids: {
-    title: "KIDS' SHOES",
+    title: "Kids' Shoes",
     blurb: "Imported sports shoes sized for kids — same quality checks, kid-friendly prices.",
   },
 };
@@ -41,7 +41,7 @@ export async function GenderShopPage({
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <h1 className="font-display text-5xl text-paper">{copy.title}</h1>
+      <h1 className="font-display font-display-italic text-5xl text-paper">{copy.title}</h1>
       <p className="mt-2 text-paper/60">{copy.blurb}</p>
 
       <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[240px_1fr]">

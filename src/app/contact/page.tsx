@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-      <h1 className="font-display text-5xl text-paper">VISIT US</h1>
+      <h1 className="font-display font-display-italic text-5xl text-paper">Visit Us</h1>
 
       <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2">
         <div className="space-y-6">
@@ -52,7 +52,7 @@ export default function ContactPage() {
                 href={generalInquiryLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex w-fit items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-bold uppercase tracking-wide text-ink transition hover:bg-accent-dark"
+                className="mt-3 inline-flex w-fit items-center gap-2 rounded-sm bg-accent px-6 py-3 text-xs font-bold uppercase tracking-widest text-ink transition hover:bg-accent-dark"
               >
                 <MessageCircle size={16} />
                 Chat Now

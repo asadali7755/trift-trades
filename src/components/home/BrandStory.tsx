@@ -9,7 +9,7 @@ const STATS = [
 export function BrandStory() {
   return (
     <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
-      <div className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-3xl bg-surface lg:mx-0">
+      <div className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-sm bg-surface lg:mx-0">
         <Image
           src="/images/imported-puma-sneaker-on-turf-thrift-trades.webp"
           alt="Imported Puma sneaker on artificial turf at Thrift Trades"
@@ -22,8 +22,8 @@ export function BrandStory() {
         <span className="text-xs font-semibold uppercase tracking-widest text-accent">
           Our Story
         </span>
-        <h2 className="mt-3 font-display text-4xl text-paper">
-          IMPORTED. INSPECTED. HONEST PRICING.
+        <h2 className="mt-3 font-display font-display-italic text-4xl text-paper">
+          Imported. Inspected. Honestly Priced.
         </h2>
         <p className="mt-4 text-paper/70">
           Thrift Trades sources genuine, branded football boots and sports shoes from abroad
@@ -35,8 +35,10 @@ export function BrandStory() {
         <div className="mt-8 grid grid-cols-3 gap-6 border-t border-white/10 pt-6">
           {STATS.map((stat) => (
             <div key={stat.label}>
-              <p className="font-display text-3xl text-accent">{stat.value}</p>
-              <p className="mt-1 text-xs uppercase tracking-wide text-paper/50">{stat.label}</p>
+              <p className="font-display font-display-italic text-3xl text-accent">{stat.value}</p>
+              <p className="mt-1 text-[10px] uppercase tracking-widest text-paper/50">
+                {stat.label}
+              </p>
             </div>
           ))}
         </div>

@@ -68,7 +68,7 @@ export default async function CategoryPage({
           { name: category.name, path: `/${slug}` },
         ]}
       />
-      <h1 className="font-display text-5xl text-paper">{category.name.toUpperCase()}</h1>
+      <h1 className="font-display font-display-italic text-5xl text-paper">{category.name}</h1>
       <p className="mt-3 max-w-2xl text-paper/60">
         {CATEGORY_COPY[slug] ?? category.description}
       </p>

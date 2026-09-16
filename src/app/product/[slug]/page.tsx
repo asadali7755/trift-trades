@@ -68,12 +68,12 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
               {product.category.name}
             </Link>
           )}
-          <h1 className="mt-2 font-display text-4xl text-paper sm:text-5xl">{product.name}</h1>
+          <h1 className="mt-2 font-display font-display-italic text-4xl text-paper sm:text-5xl">
+            {product.name}
+          </h1>
 
           <div className="mt-4 flex items-center gap-3">
-            <span className="font-display text-3xl text-accent">
-              PKR {product.price.toLocaleString()}
-            </span>
+            <span className="text-2xl text-accent">PKR {product.price.toLocaleString()}</span>
             {product.compare_at_price && product.compare_at_price > product.price && (
               <span className="text-lg text-paper/40 line-through">
                 PKR {product.compare_at_price.toLocaleString()}
@@ -111,7 +111,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
             href={productOrderLink(product)}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-bold uppercase tracking-wide text-ink transition hover:bg-accent-dark"
+            className="mt-8 inline-flex w-fit items-center gap-2 rounded-sm bg-accent px-8 py-4 text-xs font-bold uppercase tracking-widest text-ink transition hover:bg-accent-dark"
           >
             <MessageCircle size={18} />
             Order on WhatsApp
@@ -125,7 +125,9 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
 
       {related.length > 0 && (
         <div className="mt-20">
-          <h2 className="font-display text-3xl text-paper">YOU MIGHT ALSO LIKE</h2>
+          <h2 className="font-display font-display-italic text-3xl text-paper">
+            You Might Also Like
+          </h2>
           <div className="mt-6 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
             {related.map((p) => (
               <ProductCard key={p.id} product={p} />
