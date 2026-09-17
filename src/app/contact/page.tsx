@@ -68,7 +68,7 @@ export default function ContactPage() {
             style={{ border: 0 }}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            src={`https://www.google.com/maps?q=${SITE.geo.latitude},${SITE.geo.longitude}&hl=en&z=16&output=embed`}
+            src={SITE.mapsEmbedUrl}
           />
         </div>
       </div>
