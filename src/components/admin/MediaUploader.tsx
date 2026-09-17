@@ -59,7 +59,9 @@ export function MediaUploader({
 
   return (
     <div className="flex flex-col gap-3">
-      <div className={`grid gap-3 ${resourceType === "image" ? "grid-cols-4" : "grid-cols-1"}`}>
+      <div
+        className={`grid gap-3 ${resourceType === "image" ? "grid-cols-3 sm:grid-cols-4" : "grid-cols-1"}`}
+      >
         {items.map((item, index) => (
           <div
             key={`${item.publicId}-${index}`}
@@ -74,9 +76,10 @@ export function MediaUploader({
             <button
               type="button"
               onClick={() => removeItem(item.publicId)}
-              className="absolute right-1 top-1 rounded-full bg-black/70 p-1 text-white"
+              aria-label="Remove"
+              className="absolute right-1 top-1 flex h-8 w-8 items-center justify-center rounded-full bg-black/70 text-white"
             >
-              <X size={14} />
+              <X size={16} />
             </button>
           </div>
         ))}
@@ -93,7 +96,7 @@ export function MediaUploader({
             <button
               type="button"
               onClick={() => open()}
-              className="flex items-center justify-center gap-2 rounded-lg border border-dashed border-white/20 px-4 py-3 text-sm font-medium text-paper/70 hover:border-accent hover:text-accent"
+              className="flex min-h-[52px] items-center justify-center gap-2 rounded-lg border border-dashed border-white/20 px-4 py-3 text-sm font-medium text-paper/70 hover:border-accent hover:text-accent"
             >
               <UploadCloud size={16} />
               Upload {resourceType === "image" ? "Photo" : "Video"} From Phone
