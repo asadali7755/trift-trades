@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MessageCircle, MapPin, Clock } from "lucide-react";
+import { MessageCircle, MapPin, Clock, Star } from "lucide-react";
 import { SITE } from "@/lib/constants";
 import { generalInquiryLink } from "@/lib/whatsapp";
 
@@ -29,6 +29,22 @@ export default function ContactPage() {
                 className="mt-1 inline-block text-sm text-accent hover:underline"
               >
                 Get directions on Google Maps &rarr;
+              </a>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <Star className="mt-1 shrink-0 text-accent" />
+            <div>
+              <h3 className="font-semibold text-paper">Loved Your Shoes?</h3>
+              <p className="text-paper/70">Leave us a review on Google — it really helps.</p>
+              <a
+                href={SITE.reviewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-block text-sm text-accent hover:underline"
+              >
+                Leave a review &rarr;
               </a>
             </div>
           </div>

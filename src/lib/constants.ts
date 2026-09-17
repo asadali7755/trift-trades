@@ -19,6 +19,8 @@ export const SITE = {
   mapsUrl: "https://www.google.com/maps/place/trift-trades/@33.8906832,72.3214719,17z",
   mapsEmbedUrl:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.960031110881!2d72.32147189999999!3d33.8906832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df21d2b18ff8ad%3A0xa73fb07fe2932ef6!2strift-trades!5e0!3m2!1sen!2s!4v1789617831987!5m2!1sen!2s",
+  // Deep-links straight to the "write a review" form for this listing.
+  reviewUrl: "https://search.google.com/local/writereview?placeid=0x38df21d2b18ff8ad:0xa73fb07fe2932ef6",
   hours: "Daily 10:00 AM - 9:00 PM",
 } as const;
 

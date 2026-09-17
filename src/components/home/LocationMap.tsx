@@ -1,4 +1,4 @@
-import { MapPin } from "lucide-react";
+import { MapPin, Star } from "lucide-react";
 import { SITE } from "@/lib/constants";
 
 export function LocationMap() {
@@ -14,14 +14,25 @@ export function LocationMap() {
             {SITE.address.street}, {SITE.address.city}, {SITE.address.region}, Pakistan
           </p>
           <p className="mt-1 text-paper/60">{SITE.hours}</p>
-          <a
-            href={SITE.mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-block border-b border-accent pb-1 text-xs font-medium uppercase tracking-widest text-accent"
-          >
-            Get Directions On Google Maps &rarr;
-          </a>
+          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+            <a
+              href={SITE.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block border-b border-accent pb-1 text-xs font-medium uppercase tracking-widest text-accent"
+            >
+              Get Directions On Google Maps &rarr;
+            </a>
+            <a
+              href={SITE.reviewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 border-b border-accent pb-1 text-xs font-medium uppercase tracking-widest text-accent"
+            >
+              <Star size={13} className="fill-accent" />
+              Leave Us A Review
+            </a>
+          </div>
         </div>
 
         <div className="aspect-video w-full overflow-hidden rounded-sm">
