@@ -6,6 +6,7 @@ import { CategoryHoverLinks } from "@/components/home/CategoryHoverLinks";
 import { VideoReel } from "@/components/home/VideoReel";
 import { BrandStory } from "@/components/home/BrandStory";
 import { DeliveryCities } from "@/components/home/DeliveryCities";
+import { LocationMap } from "@/components/home/LocationMap";
 import { getGenderBanners } from "@/lib/data";
 
 export default async function Home() {
@@ -21,6 +22,7 @@ export default async function Home() {
       <VideoReel />
       <BrandStory />
       <DeliveryCities />
+      <LocationMap />
     </>
   );
 }
