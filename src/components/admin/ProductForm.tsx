@@ -185,7 +185,7 @@ export function ProductForm({
               type="button"
               key={size}
               onClick={() => toggleSize(size)}
-              className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                 sizes.includes(size) ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
               }`}
             >
@@ -247,7 +247,7 @@ export function ProductForm({
       <button
         type="submit"
         disabled={isPending}
-        className="w-fit rounded-full bg-accent px-8 py-3 text-sm font-bold uppercase tracking-wide text-ink transition hover:bg-accent-dark disabled:opacity-50"
+        className="w-fit rounded-full bg-accent px-8 py-3 text-sm font-extrabold uppercase tracking-wide text-ink transition hover:bg-accent-dark disabled:opacity-50"
       >
         {isPending ? "Saving…" : product ? "Save Changes" : "Add Shoe"}
       </button>

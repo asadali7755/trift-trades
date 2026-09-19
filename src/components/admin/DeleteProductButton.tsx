@@ -28,7 +28,7 @@ export function DeleteProductButton({
       disabled={isPending}
       className={
         fullWidth
-          ? "flex flex-1 items-center justify-center gap-1 rounded-lg bg-red-500/10 py-2.5 text-sm font-medium text-red-300 disabled:opacity-50"
+          ? "flex flex-1 items-center justify-center gap-1 rounded-lg bg-red-500/10 py-2.5 text-sm font-semibold text-red-300 disabled:opacity-50"
           : "flex items-center gap-1 text-red-300 hover:underline disabled:opacity-50"
       }
     >

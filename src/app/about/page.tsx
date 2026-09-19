@@ -46,7 +46,7 @@ export default function AboutPage() {
         href={generalInquiryLink()}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-10 inline-flex w-fit rounded-sm bg-accent px-8 py-4 text-xs font-bold uppercase tracking-widest text-ink transition hover:bg-accent-dark"
+        className="mt-10 inline-flex w-fit rounded-sm bg-accent px-8 py-4 text-xs font-extrabold uppercase tracking-widest text-ink transition hover:bg-accent-dark"
       >
         Chat With Us on WhatsApp
       </a>

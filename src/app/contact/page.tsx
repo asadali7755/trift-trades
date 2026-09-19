@@ -68,7 +68,7 @@ export default function ContactPage() {
                 href={generalInquiryLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex w-fit items-center gap-2 rounded-sm bg-accent px-6 py-3 text-xs font-bold uppercase tracking-widest text-ink transition hover:bg-accent-dark"
+                className="mt-3 inline-flex w-fit items-center gap-2 rounded-sm bg-accent px-6 py-3 text-xs font-extrabold uppercase tracking-widest text-ink transition hover:bg-accent-dark"
               >
                 <MessageCircle size={16} />
                 Chat Now

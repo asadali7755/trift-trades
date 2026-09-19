@@ -62,7 +62,7 @@ function BannerRow({ banner }: { banner: GenderBanner }) {
           type="button"
           onClick={handleSave}
           disabled={isPending || !image}
-          className="w-fit rounded-full bg-accent px-6 py-2.5 text-xs font-bold uppercase tracking-wide text-ink transition hover:bg-accent-dark disabled:opacity-50"
+          className="w-fit rounded-full bg-accent px-6 py-2.5 text-xs font-extrabold uppercase tracking-wide text-ink transition hover:bg-accent-dark disabled:opacity-50"
         >
           {isPending ? "Saving…" : saved ? "Saved ✓" : "Save"}
         </button>

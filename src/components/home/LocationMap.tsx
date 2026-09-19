@@ -19,7 +19,7 @@ export function LocationMap() {
               href={SITE.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block border-b border-accent pb-1 text-xs font-medium uppercase tracking-widest text-accent"
+              className="inline-block border-b border-accent pb-1 text-xs font-semibold uppercase tracking-widest text-accent"
             >
               Get Directions On Google Maps &rarr;
             </a>
@@ -27,7 +27,7 @@ export function LocationMap() {
               href={SITE.reviewUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 border-b border-accent pb-1 text-xs font-medium uppercase tracking-widest text-accent"
+              className="inline-flex items-center gap-1.5 border-b border-accent pb-1 text-xs font-semibold uppercase tracking-widest text-accent"
             >
               <Star size={13} className="fill-accent" />
               Leave Us A Review

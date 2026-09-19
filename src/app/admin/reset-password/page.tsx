@@ -96,7 +96,7 @@ function ResetPasswordForm() {
       <button
         type="submit"
         disabled={isSaving}
-        className="mt-2 rounded-full bg-accent px-6 py-3 text-sm font-bold uppercase tracking-wide text-ink transition hover:bg-accent-dark disabled:opacity-50"
+        className="mt-2 rounded-full bg-accent px-6 py-3 text-sm font-extrabold uppercase tracking-wide text-ink transition hover:bg-accent-dark disabled:opacity-50"
       >
         {isSaving ? "Saving…" : "Set New Password"}
       </button>

@@ -13,7 +13,7 @@ export function VideoReel() {
           </p>
           <Link
             href="/shop"
-            className="w-fit rounded-sm bg-accent px-6 py-3 text-xs font-bold uppercase tracking-widest text-ink transition hover:bg-accent-dark"
+            className="w-fit rounded-sm bg-accent px-6 py-3 text-xs font-extrabold uppercase tracking-widest text-ink transition hover:bg-accent-dark"
           >
             Browse The Collection
           </Link>

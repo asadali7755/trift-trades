@@ -111,7 +111,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
             href={productOrderLink(product)}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex w-fit items-center gap-2 rounded-sm bg-accent px-8 py-4 text-xs font-bold uppercase tracking-widest text-ink transition hover:bg-accent-dark"
+            className="mt-8 inline-flex w-fit items-center gap-2 rounded-sm bg-accent px-8 py-4 text-xs font-extrabold uppercase tracking-widest text-ink transition hover:bg-accent-dark"
           >
             <MessageCircle size={18} />
             Order on WhatsApp

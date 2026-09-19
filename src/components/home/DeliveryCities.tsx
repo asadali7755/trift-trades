@@ -14,7 +14,7 @@ export function DeliveryCities() {
           {DELIVERY_CITIES.map((city) => (
             <div
               key={city}
-              className="rounded-sm border border-white/10 bg-surface-light px-4 py-3 text-center text-sm font-medium text-paper/80"
+              className="rounded-sm border border-white/10 bg-surface-light px-4 py-3 text-center text-sm font-semibold text-paper/80"
             >
               {city}
             </div>

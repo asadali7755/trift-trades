@@ -48,7 +48,7 @@ export default async function AdminLoginPage({
         </div>
         <button
           type="submit"
-          className="mt-2 rounded-full bg-accent px-6 py-3 text-sm font-bold uppercase tracking-wide text-ink transition hover:bg-accent-dark"
+          className="mt-2 rounded-full bg-accent px-6 py-3 text-sm font-extrabold uppercase tracking-wide text-ink transition hover:bg-accent-dark"
         >
           Log In
         </button>

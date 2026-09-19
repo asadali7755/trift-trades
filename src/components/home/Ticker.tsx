@@ -16,7 +16,7 @@ export function Ticker() {
         {items.map((item, i) => (
           <span
             key={i}
-            className="text-xs font-medium uppercase tracking-[0.2em] text-paper/40"
+            className="text-xs font-semibold uppercase tracking-[0.2em] text-paper/40"
           >
             {item} <span className="text-accent">&middot;</span>
           </span>

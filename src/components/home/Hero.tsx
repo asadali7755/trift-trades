@@ -25,7 +25,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
             Imported &middot; Inspected &middot; Nationwide
           </span>
           <h1 className="mt-6 font-display text-6xl leading-[0.98] text-paper sm:text-7xl lg:text-8xl">
@@ -42,7 +42,7 @@ export function Hero() {
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/shop"
-              className="rounded-sm bg-accent px-7 py-3 text-xs font-bold uppercase tracking-widest text-ink transition hover:bg-accent-dark"
+              className="rounded-sm bg-accent px-7 py-3 text-xs font-extrabold uppercase tracking-widest text-ink transition hover:bg-accent-dark"
             >
               Shop The Edit
             </Link>
@@ -50,7 +50,7 @@ export function Hero() {
               href={generalInquiryLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-sm border border-white/20 px-7 py-3 text-xs font-bold uppercase tracking-widest text-paper transition hover:border-accent hover:text-accent"
+              className="rounded-sm border border-white/20 px-7 py-3 text-xs font-extrabold uppercase tracking-widest text-paper transition hover:border-accent hover:text-accent"
             >
               Order on WhatsApp
             </a>

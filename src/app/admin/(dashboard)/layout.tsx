@@ -13,30 +13,30 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
       <aside className="flex shrink-0 flex-row gap-2 overflow-x-auto lg:w-56 lg:flex-col">
         <Link
           href="/admin"
-          className="flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-paper/80 hover:bg-white/5"
+          className="flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold text-paper/80 hover:bg-white/5"
         >
           <LayoutGrid size={16} /> Shoes
         </Link>
         <Link
           href="/admin/products/new"
-          className="flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-paper/80 hover:bg-white/5"
+          className="flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold text-paper/80 hover:bg-white/5"
         >
           <PlusCircle size={16} /> Add Shoe
         </Link>
         <Link
           href="/admin/categories"
-          className="flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-paper/80 hover:bg-white/5"
+          className="flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold text-paper/80 hover:bg-white/5"
         >
           <Tags size={16} /> Categories
         </Link>
         <Link
           href="/admin/banners"
-          className="flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-paper/80 hover:bg-white/5"
+          className="flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold text-paper/80 hover:bg-white/5"
         >
           <Images size={16} /> Shop by Gender
         </Link>
         <form action={logout} className="mt-0 lg:mt-auto">
-          <button className="flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-red-300 hover:bg-white/5">
+          <button className="flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold text-red-300 hover:bg-white/5">
             <LogOut size={16} /> Log Out
           </button>
         </form>

@@ -36,7 +36,7 @@ export function CategoryManager({ categories }: { categories: Category[] }) {
         />
         <button
           disabled={isPending}
-          className="rounded-lg bg-accent px-5 text-sm font-bold uppercase tracking-wide text-ink disabled:opacity-50"
+          className="rounded-lg bg-accent px-5 text-sm font-extrabold uppercase tracking-wide text-ink disabled:opacity-50"
         >
           Add
         </button>

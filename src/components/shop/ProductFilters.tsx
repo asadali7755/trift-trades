@@ -37,7 +37,7 @@ export function ProductFilters({ categories }: { categories: Category[] }) {
           <div className="mt-3 flex flex-wrap gap-2">
             <button
               onClick={() => updateParam("gender", null)}
-              className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                 !activeGender ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
               }`}
             >
@@ -47,7 +47,7 @@ export function ProductFilters({ categories }: { categories: Category[] }) {
               <button
                 key={g.value}
                 onClick={() => updateParam("gender", g.value)}
-                className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                   activeGender === g.value ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
                 }`}
               >
@@ -66,7 +66,7 @@ export function ProductFilters({ categories }: { categories: Category[] }) {
           <div className="mt-3 flex flex-wrap gap-2">
             <button
               onClick={() => updateParam("category", null)}
-              className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                 !activeCategory ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
               }`}
             >
@@ -76,7 +76,7 @@ export function ProductFilters({ categories }: { categories: Category[] }) {
               <button
                 key={c.id}
                 onClick={() => updateParam("category", c.slug)}
-                className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                   activeCategory === c.slug ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
                 }`}
               >
@@ -92,7 +92,7 @@ export function ProductFilters({ categories }: { categories: Category[] }) {
         <div className="mt-3 flex flex-wrap gap-2">
           <button
             onClick={() => updateParam("size", null)}
-            className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+            className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
               !activeSize ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
             }`}
           >
@@ -102,7 +102,7 @@ export function ProductFilters({ categories }: { categories: Category[] }) {
             <button
               key={size}
               onClick={() => updateParam("size", size)}
-              className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                 activeSize === size ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
               }`}
             >

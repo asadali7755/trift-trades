@@ -29,7 +29,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-xs font-medium uppercase tracking-[0.12em] text-paper/70 transition hover:text-accent"
+              className="text-xs font-semibold uppercase tracking-[0.12em] text-paper/70 transition hover:text-accent"
             >
               {link.label}
             </Link>
@@ -63,7 +63,7 @@ export function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="rounded-lg px-3 py-3 text-base font-medium text-paper/90 hover:bg-white/5"
+              className="rounded-lg px-3 py-3 text-base font-semibold text-paper/90 hover:bg-white/5"
             >
               {link.label}
             </Link>
