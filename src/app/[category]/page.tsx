@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getCategories, getCategoryBySlug, getProducts } from "@/lib/data";
+import {
+  getBrands,
+  getCategories,
+  getCategoryBySlug,
+  getColors,
+  getConditions,
+  getProducts,
+} from "@/lib/data";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { ProductFilters } from "@/components/shop/ProductFilters";
 import { Pagination } from "@/components/shop/Pagination";
@@ -50,15 +57,24 @@ export default async function CategoryPage({
   if (!category) notFound();
 
   const query = await searchParams;
-  const [categories, { products, page, totalPages }] = await Promise.all([
-    getCategories(),
-    getProducts({
-      categorySlug: slug,
-      gender: query.gender,
-      size: query.size,
-      page: query.page ? Number(query.page) : 1,
-    }),
-  ]);
+  const [categories, brands, colors, conditions, { products, page, totalPages }] =
+    await Promise.all([
+      getCategories(),
+      getBrands(),
+      getColors(),
+      getConditions(),
+      getProducts({
+        categorySlug: slug,
+        gender: query.gender,
+        size: query.size,
+        brandSlug: query.brand,
+        colorId: query.color,
+        condition: query.condition,
+        minPrice: query.minPrice ? Number(query.minPrice) : undefined,
+        maxPrice: query.maxPrice ? Number(query.maxPrice) : undefined,
+        page: query.page ? Number(query.page) : 1,
+      }),
+    ]);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -75,7 +91,12 @@ export default async function CategoryPage({
 
       <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[240px_1fr]">
         <aside className="lg:sticky lg:top-24 lg:self-start">
-          <ProductFilters categories={categories} />
+          <ProductFilters
+            categories={categories}
+            brands={brands}
+            colors={colors}
+            conditions={conditions}
+          />
         </aside>
 
         <div>
@@ -95,7 +116,15 @@ export default async function CategoryPage({
             page={page}
             totalPages={totalPages}
             basePath={`/${slug}`}
-            extraParams={{ gender: query.gender, size: query.size }}
+            extraParams={{
+              gender: query.gender,
+              size: query.size,
+              brand: query.brand,
+              color: query.color,
+              condition: query.condition,
+              minPrice: query.minPrice,
+              maxPrice: query.maxPrice,
+            }}
           />
         </div>
       </div>

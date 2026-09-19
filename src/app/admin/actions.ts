@@ -33,7 +33,7 @@ function slugify(text: string) {
 // changing its name doesn't collide with itself).
 async function uniqueSlug(
   supabase: Awaited<ReturnType<typeof createClient>>,
-  table: "products" | "categories",
+  table: "products" | "categories" | "brands",
   baseSlug: string,
   excludeId?: string
 ) {
@@ -90,6 +90,8 @@ export type ProductFormInput = {
   id?: string;
   name: string;
   categoryId: string | null;
+  brandId: string | null;
+  colorId: string | null;
   gender: string;
   price: number;
   compareAtPrice: number | null;
@@ -110,6 +112,8 @@ export async function saveProduct(input: ProductFormInput) {
     name: input.name,
     slug,
     category_id: input.categoryId,
+    brand_id: input.brandId,
+    color_id: input.colorId,
     gender: input.gender,
     price: input.price,
     compare_at_price: input.compareAtPrice,
@@ -170,6 +174,59 @@ export async function deleteCategory(id: string) {
   const { error } = await supabase.from("categories").delete().eq("id", id);
   if (error) throw error;
   revalidatePath("/admin/categories");
+}
+
+export async function saveBrand(input: { id?: string; name: string }) {
+  const supabase = await createClient();
+  const slug = await uniqueSlug(supabase, "brands", slugify(input.name), input.id);
+
+  if (input.id) {
+    const { error } = await supabase
+      .from("brands")
+      .update({ name: input.name, slug })
+      .eq("id", input.id);
+    if (error) throw error;
+  } else {
+    const { error } = await supabase.from("brands").insert({ name: input.name, slug });
+    if (error) throw error;
+  }
+
+  revalidatePath("/admin/brands");
+  revalidatePath("/shop");
+}
+
+export async function deleteBrand(id: string) {
+  const supabase = await createClient();
+  const { error } = await supabase.from("brands").delete().eq("id", id);
+  if (error) throw error;
+  revalidatePath("/admin/brands");
+  revalidatePath("/shop");
+}
+
+export async function saveColor(input: { id?: string; name: string; hex: string }) {
+  const supabase = await createClient();
+
+  if (input.id) {
+    const { error } = await supabase
+      .from("colors")
+      .update({ name: input.name, hex: input.hex })
+      .eq("id", input.id);
+    if (error) throw error;
+  } else {
+    const { error } = await supabase.from("colors").insert({ name: input.name, hex: input.hex });
+    if (error) throw error;
+  }
+
+  revalidatePath("/admin/colors");
+  revalidatePath("/shop");
+}
+
+export async function deleteColor(id: string) {
+  const supabase = await createClient();
+  const { error } = await supabase.from("colors").delete().eq("id", id);
+  if (error) throw error;
+  revalidatePath("/admin/colors");
+  revalidatePath("/shop");
 }
 
 export async function saveGenderBanner(input: {

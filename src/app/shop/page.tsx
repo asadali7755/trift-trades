@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getCategories, getProducts } from "@/lib/data";
+import { getBrands, getCategories, getColors, getConditions, getProducts } from "@/lib/data";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { ProductFilters } from "@/components/shop/ProductFilters";
 import { Pagination } from "@/components/shop/Pagination";
@@ -16,15 +16,24 @@ export default async function ShopPage({
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const params = await searchParams;
-  const [categories, { products, page, totalPages }] = await Promise.all([
-    getCategories(),
-    getProducts({
-      categorySlug: params.category,
-      gender: params.gender,
-      size: params.size,
-      page: params.page ? Number(params.page) : 1,
-    }),
-  ]);
+  const [categories, brands, colors, conditions, { products, page, totalPages }] =
+    await Promise.all([
+      getCategories(),
+      getBrands(),
+      getColors(),
+      getConditions(),
+      getProducts({
+        categorySlug: params.category,
+        gender: params.gender,
+        size: params.size,
+        brandSlug: params.brand,
+        colorId: params.color,
+        condition: params.condition,
+        minPrice: params.minPrice ? Number(params.minPrice) : undefined,
+        maxPrice: params.maxPrice ? Number(params.maxPrice) : undefined,
+        page: params.page ? Number(params.page) : 1,
+      }),
+    ]);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -35,7 +44,12 @@ export default async function ShopPage({
 
       <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[240px_1fr]">
         <aside className="lg:sticky lg:top-24 lg:self-start">
-          <ProductFilters categories={categories} />
+          <ProductFilters
+            categories={categories}
+            brands={brands}
+            colors={colors}
+            conditions={conditions}
+          />
         </aside>
 
         <div>
@@ -55,7 +69,16 @@ export default async function ShopPage({
             page={page}
             totalPages={totalPages}
             basePath="/shop"
-            extraParams={{ category: params.category, gender: params.gender, size: params.size }}
+            extraParams={{
+              category: params.category,
+              gender: params.gender,
+              size: params.size,
+              brand: params.brand,
+              color: params.color,
+              condition: params.condition,
+              minPrice: params.minPrice,
+              maxPrice: params.maxPrice,
+            }}
           />
         </div>
       </div>

@@ -4,7 +4,7 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { saveProduct } from "@/app/admin/actions";
 import { MediaUploader } from "@/components/admin/MediaUploader";
-import type { Category, Product } from "@/lib/types";
+import type { Brand, Category, Color, Product } from "@/lib/types";
 
 const SIZE_OPTIONS = ["4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10", "10.5", "11"];
 const GENDER_OPTIONS: { value: Product["gender"]; label: string }[] = [
@@ -16,15 +16,21 @@ const GENDER_OPTIONS: { value: Product["gender"]; label: string }[] = [
 
 export function ProductForm({
   categories,
+  brands,
+  colors,
   product,
 }: {
   categories: Category[];
+  brands: Brand[];
+  colors: Color[];
   product?: Product;
 }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [name, setName] = useState(product?.name ?? "");
   const [categoryId, setCategoryId] = useState(product?.category_id ?? categories[0]?.id ?? "");
+  const [brandId, setBrandId] = useState(product?.brand_id ?? "");
+  const [colorId, setColorId] = useState(product?.color_id ?? "");
   const [gender, setGender] = useState<Product["gender"]>(product?.gender ?? "unisex");
   const [price, setPrice] = useState(product?.price?.toString() ?? "");
   const [compareAtPrice, setCompareAtPrice] = useState(
@@ -62,6 +68,8 @@ export function ProductForm({
           id: product?.id,
           name,
           categoryId: categoryId || null,
+          brandId: brandId || null,
+          colorId: colorId || null,
           gender,
           price: Number(price),
           compareAtPrice: compareAtPrice ? Number(compareAtPrice) : null,
@@ -144,6 +152,43 @@ export function ProductForm({
             onChange={(e) => setCondition(e.target.value)}
             className="mt-1 w-full rounded-lg border border-white/15 bg-surface px-4 py-3 text-paper outline-none focus:border-accent"
           />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+            Brand
+          </label>
+          <select
+            value={brandId}
+            onChange={(e) => setBrandId(e.target.value)}
+            className="mt-1 w-full rounded-lg border border-white/15 bg-surface px-4 py-3 text-paper outline-none focus:border-accent"
+          >
+            <option value="">Unbranded</option>
+            {brands.map((b) => (
+              <option key={b.id} value={b.id}>
+                {b.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+            Color
+          </label>
+          <select
+            value={colorId}
+            onChange={(e) => setColorId(e.target.value)}
+            className="mt-1 w-full rounded-lg border border-white/15 bg-surface px-4 py-3 text-paper outline-none focus:border-accent"
+          >
+            <option value="">No color set</option>
+            {colors.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 

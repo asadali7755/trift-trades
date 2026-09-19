@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { LogOut, LayoutGrid, Tags, PlusCircle, Images } from "lucide-react";
+import { LogOut, LayoutGrid, Tags, PlusCircle, Images, Award, Palette } from "lucide-react";
 import { logout } from "@/app/admin/actions";
 
 export const metadata: Metadata = {
@@ -28,6 +28,18 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
           className="flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold text-paper/80 hover:bg-white/5"
         >
           <Tags size={16} /> Categories
+        </Link>
+        <Link
+          href="/admin/brands"
+          className="flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold text-paper/80 hover:bg-white/5"
+        >
+          <Award size={16} /> Brands
+        </Link>
+        <Link
+          href="/admin/colors"
+          className="flex items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold text-paper/80 hover:bg-white/5"
+        >
+          <Palette size={16} /> Colors
         </Link>
         <Link
           href="/admin/banners"

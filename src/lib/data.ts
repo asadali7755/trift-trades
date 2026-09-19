@@ -1,5 +1,5 @@
 import { createPublicClient } from "@/lib/supabase/public";
-import type { Category, GenderBanner, Product } from "@/lib/types";
+import type { Brand, Category, Color, GenderBanner, Product } from "@/lib/types";
 
 const PAGE_SIZE = 24;
 
@@ -44,10 +44,67 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null> 
   return data;
 }
 
+export async function getBrandBySlug(slug: string): Promise<Brand | null> {
+  if (!isSupabaseConfigured()) return null;
+  const supabase = createPublicClient();
+  const { data, error } = await supabase
+    .from("brands")
+    .select("*")
+    .eq("slug", slug)
+    .maybeSingle();
+
+  if (error) throw error;
+  return data;
+}
+
+export async function getBrands(): Promise<Brand[]> {
+  if (!isSupabaseConfigured()) return [];
+  const supabase = createPublicClient();
+  const { data, error } = await supabase
+    .from("brands")
+    .select("*")
+    .order("sort_order", { ascending: true });
+
+  if (error) throw error;
+  return data ?? [];
+}
+
+export async function getColors(): Promise<Color[]> {
+  if (!isSupabaseConfigured()) return [];
+  const supabase = createPublicClient();
+  const { data, error } = await supabase
+    .from("colors")
+    .select("*")
+    .order("sort_order", { ascending: true });
+
+  if (error) throw error;
+  return data ?? [];
+}
+
+// Conditions aren't a separate admin-managed table — the filter sidebar
+// just lists whatever distinct condition text is already in use across
+// in-stock products, so it stays in sync with what the owner actually types
+// on the product form without needing a second thing to keep updated.
+export async function getConditions(): Promise<string[]> {
+  if (!isSupabaseConfigured()) return [];
+  const supabase = createPublicClient();
+  const { data, error } = await supabase
+    .from("products")
+    .select("condition")
+    .eq("is_in_stock", true);
+
+  if (error) throw error;
+  const unique = Array.from(new Set((data ?? []).map((row) => row.condition).filter(Boolean)));
+  return unique.sort();
+}
+
 export type ProductFilters = {
   categorySlug?: string;
   gender?: string;
   size?: string;
+  brandSlug?: string;
+  colorId?: string;
+  condition?: string;
   minPrice?: number;
   maxPrice?: number;
   page?: number;
@@ -64,7 +121,7 @@ export async function getProducts(filters: ProductFilters = {}) {
 
   let query = supabase
     .from("products")
-    .select("*, category:categories(*)", { count: "exact" })
+    .select("*, category:categories(*), brand:brands(*), color:colors(*)", { count: "exact" })
     .eq("is_in_stock", true)
     .order("created_at", { ascending: false })
     .range(from, to);
@@ -78,6 +135,16 @@ export async function getProducts(filters: ProductFilters = {}) {
   }
   if (filters.size) {
     query = query.contains("sizes", [filters.size]);
+  }
+  if (filters.brandSlug) {
+    const brand = await getBrandBySlug(filters.brandSlug);
+    if (brand) query = query.eq("brand_id", brand.id);
+  }
+  if (filters.colorId) {
+    query = query.eq("color_id", filters.colorId);
+  }
+  if (filters.condition) {
+    query = query.eq("condition", filters.condition);
   }
   if (filters.minPrice !== undefined) {
     query = query.gte("price", filters.minPrice);
@@ -103,7 +170,7 @@ export async function getFeaturedProducts(limit = 4): Promise<Product[]> {
   const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("products")
-    .select("*, category:categories(*)")
+    .select("*, category:categories(*), brand:brands(*), color:colors(*)")
     .eq("is_in_stock", true)
     .eq("is_featured", true)
     .order("created_at", { ascending: false })
@@ -118,7 +185,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
   const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("products")
-    .select("*, category:categories(*)")
+    .select("*, category:categories(*), brand:brands(*), color:colors(*)")
     .eq("slug", slug)
     .maybeSingle();
 
@@ -135,7 +202,7 @@ export async function getRelatedProducts(
   const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("products")
-    .select("*, category:categories(*)")
+    .select("*, category:categories(*), brand:brands(*), color:colors(*)")
     .eq("category_id", categoryId)
     .eq("is_in_stock", true)
     .neq("id", excludeId)
@@ -150,7 +217,7 @@ export async function getAllProductsForAdmin(): Promise<Product[]> {
   const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("products")
-    .select("*, category:categories(*)")
+    .select("*, category:categories(*), brand:brands(*), color:colors(*)")
     .order("created_at", { ascending: false });
 
   if (error) throw error;
@@ -162,7 +229,7 @@ export async function getProductById(id: string): Promise<Product | null> {
   const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("products")
-    .select("*, category:categories(*)")
+    .select("*, category:categories(*), brand:brands(*), color:colors(*)")
     .eq("id", id)
     .maybeSingle();
 

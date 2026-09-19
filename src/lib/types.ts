@@ -6,6 +6,20 @@ export type Category = {
   sort_order: number;
 };
 
+export type Brand = {
+  id: string;
+  name: string;
+  slug: string;
+  sort_order: number;
+};
+
+export type Color = {
+  id: string;
+  name: string;
+  hex: string;
+  sort_order: number;
+};
+
 export type ProductImage = {
   url: string;
   alt: string;
@@ -19,6 +33,10 @@ export type Product = {
   slug: string;
   category_id: string | null;
   category?: Category | null;
+  brand_id: string | null;
+  brand?: Brand | null;
+  color_id: string | null;
+  color?: Color | null;
   gender: Gender;
   price: number;
   compare_at_price: number | null;

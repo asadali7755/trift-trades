@@ -6,6 +6,7 @@ import { CinematicFooter } from "@/components/layout/CinematicFooter";
 import { WhatsAppFloatingButton } from "@/components/layout/WhatsAppFloatingButton";
 import { LocalBusinessSchema } from "@/components/schema/LocalBusinessSchema";
 import { SITE } from "@/lib/constants";
+import { getBrands } from "@/lib/data";
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-serif",
@@ -44,7 +45,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const brands = await getBrands();
+
   return (
     <html
       lang="en"
@@ -54,7 +57,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <LocalBusinessSchema />
       </head>
       <body className="min-h-full flex flex-col bg-ink text-paper">
-        <Header />
+        <Header brands={brands} />
         <main className="flex-1">{children}</main>
         <CinematicFooter />
         <WhatsAppFloatingButton />

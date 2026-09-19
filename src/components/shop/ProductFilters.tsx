@@ -1,16 +1,28 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import type { Category } from "@/lib/types";
+import type { Brand, Category, Color } from "@/lib/types";
+import { SHOE_SIZES } from "@/lib/shopOptions";
 
-const SIZES = ["4", "4.5", "5", "5.5", "6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10"];
+const SIZES = SHOE_SIZES;
 const GENDERS = [
   { value: "men", label: "Men" },
   { value: "women", label: "Women" },
   { value: "kids", label: "Kids" },
 ];
 
-export function ProductFilters({ categories }: { categories: Category[] }) {
+export function ProductFilters({
+  categories,
+  brands = [],
+  colors = [],
+  conditions = [],
+}: {
+  categories: Category[];
+  brands?: Brand[];
+  colors?: Color[];
+  conditions?: string[];
+}) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -26,6 +38,22 @@ export function ProductFilters({ categories }: { categories: Category[] }) {
   const activeSize = searchParams.get("size");
   const activeCategory = searchParams.get("category");
   const activeGender = searchParams.get("gender");
+  const activeBrand = searchParams.get("brand");
+  const activeColor = searchParams.get("color");
+  const activeCondition = searchParams.get("condition");
+
+  const [minPrice, setMinPrice] = useState(searchParams.get("minPrice") ?? "");
+  const [maxPrice, setMaxPrice] = useState(searchParams.get("maxPrice") ?? "");
+
+  function applyPriceRange() {
+    const params = new URLSearchParams(searchParams.toString());
+    if (minPrice) params.set("minPrice", minPrice);
+    else params.delete("minPrice");
+    if (maxPrice) params.set("maxPrice", maxPrice);
+    else params.delete("maxPrice");
+    params.delete("page");
+    router.push(`${pathname}?${params.toString()}`);
+  }
 
   const onDedicatedGenderPage = pathname?.match(/^\/(men|women|kids)(\/|$)/);
 
@@ -109,6 +137,113 @@ export function ProductFilters({ categories }: { categories: Category[] }) {
               {size}
             </button>
           ))}
+        </div>
+      </div>
+
+      {brands.length > 0 && (
+        <div>
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">Brand</h3>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <button
+              onClick={() => updateParam("brand", null)}
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                !activeBrand ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
+              }`}
+            >
+              All
+            </button>
+            {brands.map((b) => (
+              <button
+                key={b.id}
+                onClick={() => updateParam("brand", b.slug)}
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                  activeBrand === b.slug ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
+                }`}
+              >
+                {b.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {colors.length > 0 && (
+        <div>
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">Color</h3>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {colors.map((c) => (
+              <button
+                key={c.id}
+                onClick={() => updateParam("color", activeColor === c.id ? null : c.id)}
+                aria-label={c.name}
+                title={c.name}
+                className={`h-8 w-8 rounded-full border-2 transition ${
+                  activeColor === c.id ? "border-accent" : "border-white/15"
+                }`}
+                style={{ backgroundColor: c.hex }}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {conditions.length > 0 && (
+        <div>
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+            Condition
+          </h3>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <button
+              onClick={() => updateParam("condition", null)}
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                !activeCondition ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
+              }`}
+            >
+              All
+            </button>
+            {conditions.map((cond) => (
+              <button
+                key={cond}
+                onClick={() => updateParam("condition", cond)}
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                  activeCondition === cond ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
+                }`}
+              >
+                {cond}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div>
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+          Price (PKR)
+        </h3>
+        <div className="mt-3 flex items-center gap-2">
+          <input
+            type="number"
+            min="0"
+            inputMode="numeric"
+            placeholder="Min"
+            value={minPrice}
+            onChange={(e) => setMinPrice(e.target.value)}
+            onBlur={applyPriceRange}
+            onKeyDown={(e) => e.key === "Enter" && applyPriceRange()}
+            className="w-full min-w-0 rounded-lg border border-white/15 bg-surface-light px-3 py-2 text-sm text-paper outline-none focus:border-accent"
+          />
+          <span className="text-paper/40">&ndash;</span>
+          <input
+            type="number"
+            min="0"
+            inputMode="numeric"
+            placeholder="Max"
+            value={maxPrice}
+            onChange={(e) => setMaxPrice(e.target.value)}
+            onBlur={applyPriceRange}
+            onKeyDown={(e) => e.key === "Enter" && applyPriceRange()}
+            className="w-full min-w-0 rounded-lg border border-white/15 bg-surface-light px-3 py-2 text-sm text-paper outline-none focus:border-accent"
+          />
         </div>
       </div>
     </div>
