@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { generalInquiryLink } from "@/lib/whatsapp";
@@ -20,8 +21,18 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-ink/95 backdrop-blur border-b border-white/10">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
-        <Link href="/" className="font-display font-display-italic text-2xl text-paper">
-          Thrift Trades
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image
+            src="/images/thrift-trades-logo-badge.webp"
+            alt="Thrift Trades logo — football boots, casual sneakers, and running shoes badge"
+            width={44}
+            height={44}
+            className="h-11 w-11 shrink-0"
+            priority
+          />
+          <span className="font-display font-display-italic text-xl text-paper">
+            Thrift Trades
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
