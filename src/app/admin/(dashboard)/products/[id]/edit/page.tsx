@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getBrands, getCategories, getColors, getProductById } from "@/lib/data";
+import { getBrands, getCategories, getConditions, getProductById } from "@/lib/data";
 import { ProductForm } from "@/components/admin/ProductForm";
 
 export default async function EditProductPage({
@@ -8,10 +8,10 @@ export default async function EditProductPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const [categories, brands, colors, product] = await Promise.all([
+  const [categories, brands, conditions, product] = await Promise.all([
     getCategories(),
     getBrands(),
-    getColors(),
+    getConditions(),
     getProductById(id),
   ]);
 
@@ -23,7 +23,12 @@ export default async function EditProductPage({
         Edit Shoe
       </h1>
       <div className="mt-6">
-        <ProductForm categories={categories} brands={brands} colors={colors} product={product} />
+        <ProductForm
+          categories={categories}
+          brands={brands}
+          conditions={conditions}
+          product={product}
+        />
       </div>
     </div>
   );

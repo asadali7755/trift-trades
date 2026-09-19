@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getBrands, getCategories, getColors, getConditions, getProducts } from "@/lib/data";
+import { getBrands, getCategories, getConditions, getProducts } from "@/lib/data";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { ProductFilters } from "@/components/shop/ProductFilters";
 import { Pagination } from "@/components/shop/Pagination";
@@ -16,18 +16,16 @@ export default async function ShopPage({
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const params = await searchParams;
-  const [categories, brands, colors, conditions, { products, page, totalPages }] =
+  const [categories, brands, conditions, { products, page, totalPages }] =
     await Promise.all([
       getCategories(),
       getBrands(),
-      getColors(),
       getConditions(),
       getProducts({
         categorySlug: params.category,
         gender: params.gender,
         size: params.size,
         brandSlug: params.brand,
-        colorId: params.color,
         condition: params.condition,
         minPrice: params.minPrice ? Number(params.minPrice) : undefined,
         maxPrice: params.maxPrice ? Number(params.maxPrice) : undefined,
@@ -47,7 +45,6 @@ export default async function ShopPage({
           <ProductFilters
             categories={categories}
             brands={brands}
-            colors={colors}
             conditions={conditions}
           />
         </aside>
@@ -74,7 +71,6 @@ export default async function ShopPage({
               gender: params.gender,
               size: params.size,
               brand: params.brand,
-              color: params.color,
               condition: params.condition,
               minPrice: params.minPrice,
               maxPrice: params.maxPrice,

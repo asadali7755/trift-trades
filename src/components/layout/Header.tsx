@@ -41,21 +41,31 @@ export function Header({ brands = [] }: { brands?: Brand[] }) {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-ink/95 backdrop-blur border-b border-white/10">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2.5">
-          <Image
-            src="/images/thrift-trades-logo-badge.webp"
-            alt="Thrift Trades logo — football boots, casual sneakers, and running shoes badge"
-            width={44}
-            height={44}
-            className="h-11 w-11 shrink-0"
-            priority
-          />
-          <span className="font-display font-display-italic text-xl text-paper">
-            Thrift Trades
-          </span>
-        </Link>
+    <header className="sticky top-0 z-50">
+      <div className="border-b border-white/10 bg-ink/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-8">
+        <div className="flex items-center gap-3">
+          <button
+            aria-label="Toggle menu"
+            className="flex items-center justify-center rounded-full p-1.5 text-paper transition hover:bg-white/5"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X size={26} /> : <Menu size={26} />}
+          </button>
+          <Link href="/" className="flex items-center gap-2.5">
+            <Image
+              src="/images/thrift-trades-logo-badge.webp"
+              alt="Thrift Trades logo — football boots, casual sneakers, and running shoes badge"
+              width={72}
+              height={72}
+              className="h-16 w-16 shrink-0 sm:h-[4.5rem] sm:w-[4.5rem]"
+              priority
+            />
+            <span className="font-display font-display-italic text-xl text-paper">
+              Thrift Trades
+            </span>
+          </Link>
+        </div>
 
         <nav className="hidden items-center gap-8 lg:flex">
           {NAV_LINKS.map((link) => (
@@ -69,28 +79,38 @@ export function Header({ brands = [] }: { brands?: Brand[] }) {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <a
-            href={generalInquiryLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-full border border-accent/50 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-accent transition hover:bg-accent hover:text-ink sm:inline-flex"
-          >
-            <MessageCircle size={16} />
-            Order on WhatsApp
-          </a>
-          <button
-            aria-label="Toggle menu"
-            className="text-paper lg:hidden"
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X size={26} /> : <Menu size={26} />}
-          </button>
+        <a
+          href={generalInquiryLink()}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden items-center gap-2 rounded-full border border-accent/50 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-accent transition hover:bg-accent hover:text-ink sm:inline-flex"
+        >
+          <MessageCircle size={16} />
+          Order on WhatsApp
+        </a>
         </div>
       </div>
 
       {open && (
-        <nav className="flex max-h-[75vh] flex-col gap-1 overflow-y-auto border-t border-white/10 bg-ink px-4 py-4 lg:hidden">
+        <div
+          className="fixed inset-0 z-40 bg-ink/70 backdrop-blur-sm"
+          onClick={closeAll}
+          aria-hidden="true"
+        />
+      )}
+
+      {open && (
+        <nav className="fixed inset-y-0 left-0 z-50 flex w-full max-w-sm flex-col gap-1 overflow-y-auto bg-ink px-4 py-4 shadow-2xl">
+          <div className="mb-2 flex items-center justify-between border-b border-white/10 pb-4">
+            <span className="font-display font-display-italic text-xl text-paper">Menu</span>
+            <button
+              aria-label="Close menu"
+              className="rounded-full p-1.5 text-paper/70 hover:bg-white/5"
+              onClick={closeAll}
+            >
+              <X size={22} />
+            </button>
+          </div>
           {GENDERS.map((g) => {
             const isOpen = openGender === g.href;
             return (

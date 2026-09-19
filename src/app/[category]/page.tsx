@@ -4,7 +4,6 @@ import {
   getBrands,
   getCategories,
   getCategoryBySlug,
-  getColors,
   getConditions,
   getProducts,
 } from "@/lib/data";
@@ -57,18 +56,16 @@ export default async function CategoryPage({
   if (!category) notFound();
 
   const query = await searchParams;
-  const [categories, brands, colors, conditions, { products, page, totalPages }] =
+  const [categories, brands, conditions, { products, page, totalPages }] =
     await Promise.all([
       getCategories(),
       getBrands(),
-      getColors(),
       getConditions(),
       getProducts({
         categorySlug: slug,
         gender: query.gender,
         size: query.size,
         brandSlug: query.brand,
-        colorId: query.color,
         condition: query.condition,
         minPrice: query.minPrice ? Number(query.minPrice) : undefined,
         maxPrice: query.maxPrice ? Number(query.maxPrice) : undefined,
@@ -94,7 +91,6 @@ export default async function CategoryPage({
           <ProductFilters
             categories={categories}
             brands={brands}
-            colors={colors}
             conditions={conditions}
           />
         </aside>
@@ -120,7 +116,6 @@ export default async function CategoryPage({
               gender: query.gender,
               size: query.size,
               brand: query.brand,
-              color: query.color,
               condition: query.condition,
               minPrice: query.minPrice,
               maxPrice: query.maxPrice,

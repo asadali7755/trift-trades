@@ -2,28 +2,28 @@
 
 import { useState, useTransition } from "react";
 import { Trash2 } from "lucide-react";
-import { saveColor, deleteColor } from "@/app/admin/actions";
-import type { Color } from "@/lib/types";
+import { saveCondition, deleteCondition } from "@/app/admin/actions";
+import type { Condition } from "@/lib/types";
 
-export function ColorManager({ colors }: { colors: Color[] }) {
+export function ConditionManager({ conditions }: { conditions: Condition[] }) {
   const [name, setName] = useState("");
-  const [hex, setHex] = useState("#888888");
   const [isPending, startTransition] = useTransition();
 
   function handleAdd(e: React.FormEvent) {
     e.preventDefault();
     if (!name.trim()) return;
     startTransition(async () => {
-      await saveColor({ name, hex });
+      await saveCondition({ name });
       setName("");
-      setHex("#888888");
     });
   }
 
   function handleDelete(id: string) {
-    if (!confirm("Delete this color? Shoes tagged with it will lose that tag.")) return;
+    if (!confirm("Delete this condition? Shoes using it will keep the old text until re-saved.")) {
+      return;
+    }
     startTransition(() => {
-      deleteColor(id);
+      deleteCondition(id);
     });
   }
 
@@ -31,15 +31,9 @@ export function ColorManager({ colors }: { colors: Color[] }) {
     <div className="max-w-lg">
       <form onSubmit={handleAdd} className="flex gap-2">
         <input
-          type="color"
-          value={hex}
-          onChange={(e) => setHex(e.target.value)}
-          className="h-[50px] w-14 shrink-0 cursor-pointer rounded-lg border border-white/15 bg-surface"
-        />
-        <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="e.g. Maroon"
+          placeholder="e.g. Good"
           className="flex-1 rounded-lg border border-white/15 bg-surface px-4 py-3 text-paper outline-none focus:border-accent"
         />
         <button
@@ -51,15 +45,9 @@ export function ColorManager({ colors }: { colors: Color[] }) {
       </form>
 
       <ul className="mt-6 divide-y divide-white/10 rounded-2xl bg-surface">
-        {colors.map((c) => (
+        {conditions.map((c) => (
           <li key={c.id} className="flex items-center justify-between px-4 py-3">
-            <span className="flex items-center gap-3 text-paper">
-              <span
-                className="h-5 w-5 rounded-full border border-white/20"
-                style={{ backgroundColor: c.hex }}
-              />
-              {c.name}
-            </span>
+            <span className="text-paper">{c.name}</span>
             <button
               onClick={() => handleDelete(c.id)}
               className="text-red-300 hover:underline"

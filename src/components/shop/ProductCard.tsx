@@ -46,6 +46,17 @@ export function ProductCard({ product }: { product: Product }) {
             </span>
           )}
         </div>
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-paper/50">
+          {product.condition && (
+            <span className="font-semibold uppercase tracking-wider">{product.condition}</span>
+          )}
+          {product.sizes?.length > 0 && (
+            <span>
+              {product.condition && <span className="mx-1 text-paper/30">&middot;</span>}
+              UK {product.sizes.join(", ")}
+            </span>
+          )}
+        </div>
       </div>
     </Link>
   );

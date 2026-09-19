@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import type { Brand, Category, Color } from "@/lib/types";
+import type { Brand, Category, Condition } from "@/lib/types";
 import { SHOE_SIZES } from "@/lib/shopOptions";
 
 const SIZES = SHOE_SIZES;
@@ -15,13 +15,11 @@ const GENDERS = [
 export function ProductFilters({
   categories,
   brands = [],
-  colors = [],
   conditions = [],
 }: {
   categories: Category[];
   brands?: Brand[];
-  colors?: Color[];
-  conditions?: string[];
+  conditions?: Condition[];
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -39,7 +37,6 @@ export function ProductFilters({
   const activeCategory = searchParams.get("category");
   const activeGender = searchParams.get("gender");
   const activeBrand = searchParams.get("brand");
-  const activeColor = searchParams.get("color");
   const activeCondition = searchParams.get("condition");
 
   const [minPrice, setMinPrice] = useState(searchParams.get("minPrice") ?? "");
@@ -167,26 +164,6 @@ export function ProductFilters({
         </div>
       )}
 
-      {colors.length > 0 && (
-        <div>
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">Color</h3>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {colors.map((c) => (
-              <button
-                key={c.id}
-                onClick={() => updateParam("color", activeColor === c.id ? null : c.id)}
-                aria-label={c.name}
-                title={c.name}
-                className={`h-8 w-8 rounded-full border-2 transition ${
-                  activeColor === c.id ? "border-accent" : "border-white/15"
-                }`}
-                style={{ backgroundColor: c.hex }}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
       {conditions.length > 0 && (
         <div>
           <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">
@@ -203,13 +180,13 @@ export function ProductFilters({
             </button>
             {conditions.map((cond) => (
               <button
-                key={cond}
-                onClick={() => updateParam("condition", cond)}
+                key={cond.id}
+                onClick={() => updateParam("condition", cond.name)}
                 className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
-                  activeCondition === cond ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
+                  activeCondition === cond.name ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
                 }`}
               >
-                {cond}
+                {cond.name}
               </button>
             ))}
           </div>

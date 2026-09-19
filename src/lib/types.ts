@@ -13,10 +13,9 @@ export type Brand = {
   sort_order: number;
 };
 
-export type Color = {
+export type Condition = {
   id: string;
   name: string;
-  hex: string;
   sort_order: number;
 };
 
@@ -35,8 +34,6 @@ export type Product = {
   category?: Category | null;
   brand_id: string | null;
   brand?: Brand | null;
-  color_id: string | null;
-  color?: Color | null;
   gender: Gender;
   price: number;
   compare_at_price: number | null;

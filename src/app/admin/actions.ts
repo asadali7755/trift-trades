@@ -91,7 +91,6 @@ export type ProductFormInput = {
   name: string;
   categoryId: string | null;
   brandId: string | null;
-  colorId: string | null;
   gender: string;
   price: number;
   compareAtPrice: number | null;
@@ -113,7 +112,6 @@ export async function saveProduct(input: ProductFormInput) {
     slug,
     category_id: input.categoryId,
     brand_id: input.brandId,
-    color_id: input.colorId,
     gender: input.gender,
     price: input.price,
     compare_at_price: input.compareAtPrice,
@@ -203,29 +201,34 @@ export async function deleteBrand(id: string) {
   revalidatePath("/shop");
 }
 
-export async function saveColor(input: { id?: string; name: string; hex: string }) {
+export async function saveCondition(input: { id?: string; name: string }) {
   const supabase = await createClient();
 
   if (input.id) {
     const { error } = await supabase
-      .from("colors")
-      .update({ name: input.name, hex: input.hex })
+      .from("conditions")
+      .update({ name: input.name })
       .eq("id", input.id);
     if (error) throw error;
   } else {
-    const { error } = await supabase.from("colors").insert({ name: input.name, hex: input.hex });
+    const { count } = await supabase
+      .from("conditions")
+      .select("id", { count: "exact", head: true });
+    const { error } = await supabase
+      .from("conditions")
+      .insert({ name: input.name, sort_order: (count ?? 0) + 1 });
     if (error) throw error;
   }
 
-  revalidatePath("/admin/colors");
+  revalidatePath("/admin/conditions");
   revalidatePath("/shop");
 }
 
-export async function deleteColor(id: string) {
+export async function deleteCondition(id: string) {
   const supabase = await createClient();
-  const { error } = await supabase.from("colors").delete().eq("id", id);
+  const { error } = await supabase.from("conditions").delete().eq("id", id);
   if (error) throw error;
-  revalidatePath("/admin/colors");
+  revalidatePath("/admin/conditions");
   revalidatePath("/shop");
 }
 

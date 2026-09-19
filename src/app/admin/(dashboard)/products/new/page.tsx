@@ -1,11 +1,11 @@
-import { getBrands, getCategories, getColors } from "@/lib/data";
+import { getBrands, getCategories, getConditions } from "@/lib/data";
 import { ProductForm } from "@/components/admin/ProductForm";
 
 export default async function NewProductPage() {
-  const [categories, brands, colors] = await Promise.all([
+  const [categories, brands, conditions] = await Promise.all([
     getCategories(),
     getBrands(),
-    getColors(),
+    getConditions(),
   ]);
 
   return (
@@ -14,7 +14,7 @@ export default async function NewProductPage() {
         Add A Shoe
       </h1>
       <div className="mt-6">
-        <ProductForm categories={categories} brands={brands} colors={colors} />
+        <ProductForm categories={categories} brands={brands} conditions={conditions} />
       </div>
     </div>
   );
