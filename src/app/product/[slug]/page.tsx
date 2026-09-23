@@ -63,7 +63,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           {product.category && (
             <Link
               href={`/${product.category.slug}`}
-              className="text-xs font-semibold uppercase tracking-widest text-accent"
+              className="text-xs font-bold uppercase tracking-widest text-accent"
             >
               {product.category.name}
             </Link>
@@ -87,7 +87,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
 
           {product.sizes.length > 0 && (
             <div className="mt-6">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-paper/50">
                 Available Sizes (UK)
               </h3>
               <div className="mt-2 flex flex-wrap gap-2">

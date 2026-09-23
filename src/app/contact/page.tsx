@@ -18,7 +18,7 @@ export default function ContactPage() {
           <div className="flex gap-4">
             <MapPin className="mt-1 shrink-0 text-accent" />
             <div>
-              <h3 className="font-semibold text-paper">Shop Location</h3>
+              <h3 className="font-bold text-paper">Shop Location</h3>
               <p className="text-paper/70">
                 {SITE.address.street}, {SITE.address.city}, {SITE.address.region}, Pakistan
               </p>
@@ -36,7 +36,7 @@ export default function ContactPage() {
           <div className="flex gap-4">
             <Star className="mt-1 shrink-0 text-accent" />
             <div>
-              <h3 className="font-semibold text-paper">Loved Your Shoes?</h3>
+              <h3 className="font-bold text-paper">Loved Your Shoes?</h3>
               <p className="text-paper/70">Leave us a review on Google — it really helps.</p>
               <a
                 href={SITE.reviewUrl}
@@ -52,7 +52,7 @@ export default function ContactPage() {
           <div className="flex gap-4">
             <Clock className="mt-1 shrink-0 text-accent" />
             <div>
-              <h3 className="font-semibold text-paper">Hours</h3>
+              <h3 className="font-bold text-paper">Hours</h3>
               <p className="text-paper/70">{SITE.hours}</p>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function ContactPage() {
           <div className="flex gap-4">
             <MessageCircle className="mt-1 shrink-0 text-accent" />
             <div>
-              <h3 className="font-semibold text-paper">Order Online</h3>
+              <h3 className="font-bold text-paper">Order Online</h3>
               <p className="text-paper/70">
                 Can&apos;t visit in person? Order any shoe straight from the shop on WhatsApp.
               </p>

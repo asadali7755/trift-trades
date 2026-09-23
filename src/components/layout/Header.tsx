@@ -72,7 +72,7 @@ export function Header({ brands = [] }: { brands?: Brand[] }) {
             <Link
               key={link.href}
               href={link.href}
-              className="text-xs font-semibold uppercase tracking-[0.12em] text-paper/70 transition hover:text-accent"
+              className="text-xs font-bold uppercase tracking-[0.12em] text-paper/70 transition hover:text-accent"
             >
               {link.label}
             </Link>
@@ -83,7 +83,7 @@ export function Header({ brands = [] }: { brands?: Brand[] }) {
           href={generalInquiryLink()}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden items-center gap-2 rounded-full border border-accent/50 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-accent transition hover:bg-accent hover:text-ink sm:inline-flex"
+          className="hidden items-center gap-2 rounded-full border border-accent/50 px-4 py-2 text-xs font-bold uppercase tracking-wide text-accent transition hover:bg-accent hover:text-ink sm:inline-flex"
         >
           <MessageCircle size={16} />
           Order on WhatsApp
@@ -119,7 +119,7 @@ export function Header({ brands = [] }: { brands?: Brand[] }) {
                   <Link
                     href={g.href}
                     onClick={closeAll}
-                    className="flex-1 py-3 text-base font-semibold text-paper/90"
+                    className="flex-1 py-3 text-base font-bold text-paper/90"
                   >
                     {g.label}
                   </Link>
@@ -173,7 +173,7 @@ export function Header({ brands = [] }: { brands?: Brand[] }) {
                             key={size}
                             href={`${g.href}?size=${size}`}
                             onClick={closeAll}
-                            className="rounded-full bg-surface-light px-3 py-1.5 text-xs font-semibold text-paper/80"
+                            className="rounded-full bg-surface-light px-3 py-1.5 text-xs font-bold text-paper/80"
                           >
                             {size}
                           </Link>
@@ -191,7 +191,7 @@ export function Header({ brands = [] }: { brands?: Brand[] }) {
               key={link.href}
               href={link.href}
               onClick={closeAll}
-              className="rounded-lg px-1 py-3 text-base font-semibold text-paper/90 hover:bg-white/5"
+              className="rounded-lg px-1 py-3 text-base font-bold text-paper/90 hover:bg-white/5"
             >
               {link.label}
             </Link>
@@ -201,7 +201,7 @@ export function Header({ brands = [] }: { brands?: Brand[] }) {
             href={generalInquiryLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-accent px-4 py-3 text-sm font-semibold text-ink"
+            className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-accent px-4 py-3 text-sm font-bold text-ink"
           >
             <MessageCircle size={16} />
             Order on WhatsApp
@@ -227,7 +227,7 @@ function SubAccordion({
     <div>
       <button
         onClick={onToggle}
-        className="flex w-full items-center justify-between py-2 text-left text-xs font-semibold uppercase tracking-wider text-paper/50"
+        className="flex w-full items-center justify-between py-2 text-left text-xs font-bold uppercase tracking-wider text-paper/50"
       >
         {label}
         {open ? <ChevronDown size={14} /> : <ChevronRight size={14} />}

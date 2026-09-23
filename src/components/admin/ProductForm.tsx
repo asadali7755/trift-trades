@@ -96,7 +96,7 @@ export function ProductForm({
       )}
 
       <div>
-        <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+        <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
           Shoe Name
         </label>
         <input
@@ -110,7 +110,7 @@ export function ProductForm({
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
         <div>
-          <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+          <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
             Category
           </label>
           <select
@@ -126,7 +126,7 @@ export function ProductForm({
           </select>
         </div>
         <div>
-          <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+          <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
             Men / Women / Kids
           </label>
           <select
@@ -142,7 +142,7 @@ export function ProductForm({
           </select>
         </div>
         <div>
-          <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+          <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
             Condition
           </label>
           <select
@@ -160,7 +160,7 @@ export function ProductForm({
       </div>
 
       <div>
-        <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+        <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
           Brand
         </label>
         <select
@@ -179,7 +179,7 @@ export function ProductForm({
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+          <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
             Price (PKR)
           </label>
           <input
@@ -192,7 +192,7 @@ export function ProductForm({
           />
         </div>
         <div>
-          <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+          <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
             Original Price (optional)
           </label>
           <input
@@ -206,7 +206,7 @@ export function ProductForm({
       </div>
 
       <div>
-        <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+        <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
           Available Sizes (UK)
         </label>
         <div className="mt-2 flex flex-wrap gap-2">
@@ -215,7 +215,7 @@ export function ProductForm({
               type="button"
               key={size}
               onClick={() => toggleSize(size)}
-              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+              className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
                 sizes.includes(size) ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
               }`}
             >
@@ -226,7 +226,7 @@ export function ProductForm({
       </div>
 
       <div>
-        <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+        <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
           Description
         </label>
         <textarea
@@ -238,7 +238,7 @@ export function ProductForm({
       </div>
 
       <div>
-        <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+        <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
           Photos
         </label>
         <div className="mt-2">
@@ -247,7 +247,7 @@ export function ProductForm({
       </div>
 
       <div>
-        <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+        <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
           Video (optional)
         </label>
         <div className="mt-2">

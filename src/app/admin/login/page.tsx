@@ -25,7 +25,7 @@ export default async function AdminLoginPage({
 
       <form action={login} className="mt-8 flex flex-col gap-4">
         <div>
-          <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+          <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
             Email
           </label>
           <input
@@ -36,7 +36,7 @@ export default async function AdminLoginPage({
           />
         </div>
         <div>
-          <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+          <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
             Password
           </label>
           <input

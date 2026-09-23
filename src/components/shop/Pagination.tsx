@@ -28,7 +28,7 @@ export function Pagination({
         <Link
           key={p}
           href={hrefFor(p)}
-          className={`h-9 w-9 rounded-full text-center text-sm font-semibold leading-9 transition ${
+          className={`h-9 w-9 rounded-full text-center text-sm font-bold leading-9 transition ${
             p === page ? "bg-accent text-ink" : "bg-surface-light text-paper/70 hover:bg-white/10"
           }`}
         >

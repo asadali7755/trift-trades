@@ -44,7 +44,7 @@ export default async function AdminDashboardPage() {
                     )}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate font-semibold text-paper">{product.name}</p>
+                    <p className="truncate font-bold text-paper">{product.name}</p>
                     <p className="text-sm text-paper/60">
                       {product.category?.name ?? "—"} &middot; PKR{" "}
                       {product.price.toLocaleString()}
@@ -63,7 +63,7 @@ export default async function AdminDashboardPage() {
                 <div className="mt-3 flex gap-3 border-t border-white/10 pt-3">
                   <Link
                     href={`/admin/products/${product.id}/edit`}
-                    className="flex-1 rounded-lg bg-surface-light py-2.5 text-center text-sm font-semibold text-accent"
+                    className="flex-1 rounded-lg bg-surface-light py-2.5 text-center text-sm font-bold text-accent"
                   >
                     Edit
                   </Link>
@@ -101,7 +101,7 @@ export default async function AdminDashboardPage() {
                             />
                           )}
                         </div>
-                        <span className="font-semibold text-paper">{product.name}</span>
+                        <span className="font-bold text-paper">{product.name}</span>
                       </div>
                     </td>
                     <td className="px-4 py-3 text-paper/70">{product.category?.name ?? "—"}</td>

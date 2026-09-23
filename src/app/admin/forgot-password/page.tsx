@@ -32,7 +32,7 @@ export default async function ForgotPasswordPage({
 
       <form action={requestPasswordReset} className="mt-8 flex flex-col gap-4">
         <div>
-          <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+          <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
             Email
           </label>
           <input

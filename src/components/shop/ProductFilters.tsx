@@ -58,11 +58,11 @@ export function ProductFilters({
     <div className="flex flex-col gap-6">
       {!onDedicatedGenderPage && (
         <div>
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">Shop by</h3>
+          <h3 className="text-xs font-bold uppercase tracking-wider text-paper/50">Shop by</h3>
           <div className="mt-3 flex flex-wrap gap-2">
             <button
               onClick={() => updateParam("gender", null)}
-              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+              className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
                 !activeGender ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
               }`}
             >
@@ -72,7 +72,7 @@ export function ProductFilters({
               <button
                 key={g.value}
                 onClick={() => updateParam("gender", g.value)}
-                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
                   activeGender === g.value ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
                 }`}
               >
@@ -85,13 +85,13 @@ export function ProductFilters({
 
       {!pathname?.match(/^\/(football-boots|running-shoes|casual-sneakers|kids-shoes|slippers)/) && (
         <div>
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-paper/50">
             Category
           </h3>
           <div className="mt-3 flex flex-wrap gap-2">
             <button
               onClick={() => updateParam("category", null)}
-              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+              className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
                 !activeCategory ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
               }`}
             >
@@ -101,7 +101,7 @@ export function ProductFilters({
               <button
                 key={c.id}
                 onClick={() => updateParam("category", c.slug)}
-                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
                   activeCategory === c.slug ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
                 }`}
               >
@@ -113,11 +113,11 @@ export function ProductFilters({
       )}
 
       <div>
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">Size (UK)</h3>
+        <h3 className="text-xs font-bold uppercase tracking-wider text-paper/50">Size (UK)</h3>
         <div className="mt-3 flex flex-wrap gap-2">
           <button
             onClick={() => updateParam("size", null)}
-            className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+            className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
               !activeSize ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
             }`}
           >
@@ -127,7 +127,7 @@ export function ProductFilters({
             <button
               key={size}
               onClick={() => updateParam("size", size)}
-              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+              className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
                 activeSize === size ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
               }`}
             >
@@ -139,11 +139,11 @@ export function ProductFilters({
 
       {brands.length > 0 && (
         <div>
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">Brand</h3>
+          <h3 className="text-xs font-bold uppercase tracking-wider text-paper/50">Brand</h3>
           <div className="mt-3 flex flex-wrap gap-2">
             <button
               onClick={() => updateParam("brand", null)}
-              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+              className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
                 !activeBrand ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
               }`}
             >
@@ -153,7 +153,7 @@ export function ProductFilters({
               <button
                 key={b.id}
                 onClick={() => updateParam("brand", b.slug)}
-                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
                   activeBrand === b.slug ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
                 }`}
               >
@@ -166,13 +166,13 @@ export function ProductFilters({
 
       {conditions.length > 0 && (
         <div>
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-paper/50">
             Condition
           </h3>
           <div className="mt-3 flex flex-wrap gap-2">
             <button
               onClick={() => updateParam("condition", null)}
-              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+              className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
                 !activeCondition ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
               }`}
             >
@@ -182,7 +182,7 @@ export function ProductFilters({
               <button
                 key={cond.id}
                 onClick={() => updateParam("condition", cond.name)}
-                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
                   activeCondition === cond.name ? "bg-accent text-ink" : "bg-surface-light text-paper/70"
                 }`}
               >
@@ -194,7 +194,7 @@ export function ProductFilters({
       )}
 
       <div>
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+        <h3 className="text-xs font-bold uppercase tracking-wider text-paper/50">
           Price (PKR)
         </h3>
         <div className="mt-3 flex items-center gap-2">

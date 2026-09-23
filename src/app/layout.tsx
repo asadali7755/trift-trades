@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Manrope } from "next/font/google";
+import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { CinematicFooter } from "@/components/layout/CinematicFooter";
@@ -8,9 +8,8 @@ import { LocalBusinessSchema } from "@/components/schema/LocalBusinessSchema";
 import { SITE } from "@/lib/constants";
 import { getBrands } from "@/lib/data";
 
-const instrumentSerif = Instrument_Serif({
+const fraunces = Fraunces({
   variable: "--font-serif",
-  weight: "400",
   style: ["normal", "italic"],
   subsets: ["latin"],
 });
@@ -51,7 +50,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${manrope.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${manrope.variable} h-full antialiased`}
     >
       <head>
         <LocalBusinessSchema />

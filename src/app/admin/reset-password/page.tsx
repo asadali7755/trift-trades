@@ -70,7 +70,7 @@ function ResetPasswordForm() {
         <p className="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-300">{error}</p>
       )}
       <div>
-        <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+        <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
           New Password
         </label>
         <input
@@ -82,7 +82,7 @@ function ResetPasswordForm() {
         />
       </div>
       <div>
-        <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+        <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
           Confirm New Password
         </label>
         <input

@@ -24,7 +24,7 @@ export function ProductCard({ product }: { product: Product }) {
           <div className="flex h-full items-center justify-center text-paper/30">No image</div>
         )}
         {product.is_featured && (
-          <span className="absolute left-3 top-3 rounded-sm border border-accent/50 bg-ink/80 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-accent">
+          <span className="absolute left-3 top-3 rounded-sm border border-accent/50 bg-ink/80 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-accent">
             Featured
           </span>
         )}
@@ -48,7 +48,7 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-paper/50">
           {product.condition && (
-            <span className="font-semibold uppercase tracking-wider">{product.condition}</span>
+            <span className="font-bold uppercase tracking-wider">{product.condition}</span>
           )}
           {product.sizes?.length > 0 && (
             <span>

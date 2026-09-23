@@ -48,7 +48,7 @@ function BannerRow({ banner }: { banner: GenderBanner }) {
         <h3 className="font-display text-2xl text-paper">{banner.label}</h3>
         <MediaUploader resourceType="image" items={items} onChange={setItems} />
         <div>
-          <label className="text-xs font-semibold uppercase tracking-wider text-paper/50">
+          <label className="text-xs font-bold uppercase tracking-wider text-paper/50">
             Alt text (describe the photo, for SEO)
           </label>
           <input

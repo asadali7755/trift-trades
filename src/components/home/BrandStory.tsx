@@ -19,7 +19,7 @@ export function BrandStory() {
         />
       </div>
       <div className="flex flex-col justify-center">
-        <span className="text-xs font-semibold uppercase tracking-widest text-accent">
+        <span className="text-xs font-bold uppercase tracking-widest text-accent">
           Our Story
         </span>
         <h2 className="mt-3 font-display font-display-italic text-4xl text-paper">

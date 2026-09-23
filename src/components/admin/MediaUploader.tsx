@@ -96,7 +96,7 @@ export function MediaUploader({
             <button
               type="button"
               onClick={() => open()}
-              className="flex min-h-[52px] items-center justify-center gap-2 rounded-lg border border-dashed border-white/20 px-4 py-3 text-sm font-semibold text-paper/70 hover:border-accent hover:text-accent"
+              className="flex min-h-[52px] items-center justify-center gap-2 rounded-lg border border-dashed border-white/20 px-4 py-3 text-sm font-bold text-paper/70 hover:border-accent hover:text-accent"
             >
               <UploadCloud size={16} />
               Upload {resourceType === "image" ? "Photo" : "Video"} From Phone

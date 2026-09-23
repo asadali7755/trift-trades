@@ -25,7 +25,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
             Imported &middot; Inspected &middot; Nationwide
           </span>
           <h1 className="mt-6 font-display text-6xl leading-[0.98] text-paper sm:text-7xl lg:text-8xl">

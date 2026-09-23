@@ -54,7 +54,7 @@ function MagneticPill({
       className={
         primary
           ? "inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-xs font-extrabold uppercase tracking-widest text-ink transition hover:bg-accent-dark"
-          : "inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-paper/70 backdrop-blur transition hover:border-accent/50 hover:text-accent"
+          : "inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-paper/70 backdrop-blur transition hover:border-accent/50 hover:text-accent"
       }
     >
       {children}
@@ -120,7 +120,7 @@ export function CinematicFooter() {
             {marquee.map((item, i) => (
               <span
                 key={i}
-                className="text-xs font-semibold uppercase tracking-[0.2em] text-paper/40"
+                className="text-xs font-bold uppercase tracking-[0.2em] text-paper/40"
               >
                 {item} <span className="text-accent">&middot;</span>
               </span>
@@ -132,7 +132,7 @@ export function CinematicFooter() {
           style={{ y: contentY, opacity: contentOpacity }}
           className="relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center px-6 text-center"
         >
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
             Genuine &middot; Imported &middot; Ready To Ship
           </span>
           <h2 className="mt-4 font-display font-display-italic text-5xl text-paper sm:text-6xl">

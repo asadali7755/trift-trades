@@ -13,7 +13,7 @@ export async function FeaturedProducts() {
         <h2 className="font-display font-display-italic text-4xl text-paper">The Current Edit</h2>
         <Link
           href="/shop"
-          className="border-b border-accent pb-1 text-xs font-semibold uppercase tracking-widest text-accent"
+          className="border-b border-accent pb-1 text-xs font-bold uppercase tracking-widest text-accent"
         >
           View All Shoes &rarr;
         </Link>
